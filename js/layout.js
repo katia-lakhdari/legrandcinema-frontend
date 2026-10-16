@@ -46,6 +46,31 @@ function choisirLiensMenu(session) {
     return liensAdmin;
 }
 
+function creerArche(id) {
+    return `
+        <svg class="arche" viewBox="0 0 176 56" aria-hidden="true">
+            <path class="arc arc-or" pathLength="1" d="M4,52 A84,46 0 0 1 172,52"></path>
+            <path class="arc arc-principal" pathLength="1" d="M12,52 A76,40 0 0 1 164,52"></path>
+            <path class="arc arc-secondaire" pathLength="1" d="M20,52 A68,34 0 0 1 156,52"></path>
+            <path id="${id}" d="M32,54 A56,13 0 0 1 144,54" fill="none"></path>
+            <text class="texte-arche">
+                <textPath href="#${id}" startOffset="50%" text-anchor="middle" textLength="108" lengthAdjust="spacingAndGlyphs">LE GRAND CINÉMA</textPath>
+            </text>
+        </svg>
+    `;
+}
+
+function creerVague() {
+    return `
+        <svg class="vague" viewBox="0 0 1200 72" preserveAspectRatio="none" aria-hidden="true">
+            <path class="fond-vague" d="M0,48 C150,22 300,70 450,48 S750,22 900,48 S1050,70 1200,48 L1200,72 L0,72 Z"></path>
+            <path class="bande-vague" stroke="var(--couleur-secondaire)" d="M0,40 C150,14 300,62 450,40 S750,14 900,40 S1050,62 1200,40"></path>
+            <path class="bande-vague" stroke="var(--couleur-principale)" d="M0,32 C150,6 300,54 450,32 S750,6 900,32 S1050,54 1200,32"></path>
+            <path class="bande-vague" stroke="var(--couleur-or)" d="M0,24 C150,-2 300,46 450,24 S750,-2 900,24 S1050,46 1200,24"></path>
+        </svg>
+    `;
+}
+
 function afficherHeader(session) {
     const header = document.getElementById("header-site");
     const liens = choisirLiensMenu(session);
@@ -53,7 +78,8 @@ function afficherHeader(session) {
     const logo = document.createElement("a");
     logo.className = "logo";
     logo.href = PAGE_ACCUEIL;
-    logo.textContent = "Le Grand Cinéma";
+    logo.setAttribute("aria-label", "Le Grand Cinéma, retour à l'accueil");
+    logo.innerHTML = creerArche("chemin-arche-header");
     header.appendChild(logo);
 
     if (estPageAdmin) {
@@ -76,12 +102,23 @@ function afficherHeader(session) {
     menu.className = "menu-principal";
     menu.setAttribute("aria-label", "Menu principal");
 
+    let ordre = 0;
     for (const lien of liens) {
         const elementLien = document.createElement("a");
         elementLien.href = lien.adresse;
         elementLien.textContent = lien.texte;
+        elementLien.style.setProperty("--ordre", ordre);
+        if (lien.adresse === window.location.pathname) {
+            elementLien.setAttribute("aria-current", "page");
+        }
+        elementLien.addEventListener("click", fermerMenu);
         menu.appendChild(elementLien);
+        ordre++;
     }
+
+    const actionsMenu = document.createElement("div");
+    actionsMenu.className = "actions-menu";
+    actionsMenu.style.setProperty("--ordre", ordre);
 
     if (session !== null) {
         const boutonDeconnexion = document.createElement("button");
@@ -90,7 +127,7 @@ function afficherHeader(session) {
         boutonDeconnexion.className = "btn btn-secondaire";
         boutonDeconnexion.textContent = "Déconnexion";
         boutonDeconnexion.addEventListener("click", deconnecter);
-        menu.appendChild(boutonDeconnexion);
+        actionsMenu.appendChild(boutonDeconnexion);
     }
 
     const boutonPalette = document.createElement("button");
@@ -98,21 +135,25 @@ function afficherHeader(session) {
     boutonPalette.type = "button";
     boutonPalette.className = "btn btn-secondaire";
     boutonPalette.addEventListener("click", changerPalette);
-    menu.appendChild(boutonPalette);
+    actionsMenu.appendChild(boutonPalette);
 
+    menu.appendChild(actionsMenu);
     header.appendChild(menu);
 }
 
 function afficherFooter() {
     const footer = document.getElementById("footer-site");
     footer.innerHTML = `
-        <p>Le Grand Cinéma</p>
-        <address>13 rue du Plaisir<br>54000 Nancy<br>03 83 00 00 00</address>
-        <nav aria-label="Informations">
-            <a href="/le-cinema.html">Le cinéma</a>
-            <a href="/contact.html">Contact</a>
-        </nav>
-        <p>© 2026 Le Grand Cinéma — projet de formation STUDI</p>
+        ${creerVague()}
+        <div class="contenu-footer">
+            <div class="logo-footer" role="img" aria-label="Le Grand Cinéma">${creerArche("chemin-arche-footer")}</div>
+            <address>13 rue du Plaisir<br>54000 Nancy<br>03 83 00 00 00</address>
+            <nav aria-label="Informations">
+                <a href="/le-cinema.html">Le cinéma</a>
+                <a href="/contact.html">Contact</a>
+            </nav>
+            <p class="mention">© 2026 Le Grand Cinéma — projet de formation STUDI</p>
+        </div>
     `;
 }
 
@@ -141,10 +182,31 @@ function ouvrirFermerMenu() {
     const menu = document.querySelector(".menu-principal");
     const boutonMenu = document.getElementById("bouton-menu");
     menu.classList.toggle("menu-ouvert");
-    boutonMenu.setAttribute("aria-expanded", menu.classList.contains("menu-ouvert"));
+    const estOuvert = menu.classList.contains("menu-ouvert");
+    boutonMenu.setAttribute("aria-expanded", estOuvert);
+    boutonMenu.textContent = estOuvert ? "✕" : "☰";
 }
+
+function fermerMenu() {
+    const menu = document.querySelector(".menu-principal");
+    if (menu.classList.contains("menu-ouvert")) {
+        ouvrirFermerMenu();
+    }
+}
+
+function allumerArcs() {
+    const logo = document.querySelector(".logo");
+    logo.classList.add("allume");
+}
+
+document.addEventListener("keydown", function (evenement) {
+    if (evenement.key === "Escape") {
+        fermerMenu();
+    }
+});
 
 const session = lireSession();
 afficherHeader(session);
 afficherFooter();
 appliquerPalette(localStorage.getItem(CLE_PALETTE));
+allumerArcs();
