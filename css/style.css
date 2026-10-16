@@ -1,0 +1,308 @@
+:root {
+    --couleur-fond: #0d0d0d;
+    --couleur-carte: #1a1612;
+    --couleur-champ: #221d18;
+    --couleur-or: #d4af37;
+    --couleur-texte: #f3e7c4;
+    --couleur-texte-doux: #b9ad8c;
+    --couleur-texte-discret: #8f8670;
+    --couleur-sur-bouton: #140806;
+    --couleur-message-erreur: #f09595;
+    --couleur-message-succes: #9fd3a4;
+
+    --couleur-principale: #d85a30;
+    --couleur-secondaire: #a8583a;
+
+    --police-titre: "Limelight", Georgia, serif;
+    --police-film: "Monoton", "Limelight", Georgia, serif;
+    --police-texte: "Work Sans", Arial, sans-serif;
+
+    --bordure-arrondie: 12px;
+    --bordure-pilule: 999px;
+    --marge: 16px;
+    --largeur-page: 1100px;
+    --duree-transition: 0.3s ease;
+}
+
+html[data-theme="canard"] {
+    --couleur-principale: #2e9a97;
+    --couleur-secondaire: #2e7d6b;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    transition: background-color var(--duree-transition);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--couleur-fond);
+    color: var(--couleur-texte);
+    font-family: var(--police-texte);
+    font-size: 16px;
+    line-height: 1.6;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: var(--largeur-page);
+    margin: 0 auto;
+    padding: calc(var(--marge) * 2) var(--marge);
+    position: relative;
+    z-index: 1;
+}
+
+h1,
+h2 {
+    font-family: var(--police-titre);
+    font-weight: 400;
+    color: var(--couleur-or);
+    line-height: 1.2;
+    margin: 0 0 var(--marge);
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h3,
+h4 {
+    font-family: var(--police-texte);
+    font-weight: 600;
+    color: var(--couleur-texte);
+    margin: 0 0 calc(var(--marge) / 2);
+}
+
+p {
+    margin: 0 0 var(--marge);
+}
+
+a {
+    color: var(--couleur-or);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+a:hover {
+    color: var(--couleur-texte);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+:focus-visible {
+    outline: 3px solid var(--couleur-or);
+    outline-offset: 3px;
+}
+
+.titre-film {
+    font-family: var(--police-film);
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: var(--couleur-or);
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    margin: 0 0 calc(var(--marge) / 2);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border: 2px solid var(--couleur-principale);
+    border-radius: var(--bordure-pilule);
+    background-color: var(--couleur-principale);
+    color: var(--couleur-sur-bouton);
+    font-family: var(--police-texte);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--duree-transition), border-color var(--duree-transition), transform var(--duree-transition);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    color: var(--couleur-sur-bouton);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondaire {
+    background-color: transparent;
+    border-color: var(--couleur-or);
+    color: var(--couleur-or);
+}
+
+.btn-secondaire:hover {
+    background-color: var(--couleur-or);
+    color: var(--couleur-sur-bouton);
+}
+
+.btn-large {
+    width: 100%;
+    padding: 16px 28px;
+    font-size: 1.1rem;
+}
+
+.carte {
+    background-color: var(--couleur-carte);
+    border: 1px solid var(--couleur-secondaire);
+    border-radius: var(--bordure-arrondie);
+    padding: calc(var(--marge) * 1.5);
+}
+
+.formulaire {
+    display: flex;
+    flex-direction: column;
+    gap: var(--marge);
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.champ {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.champ label {
+    font-weight: 500;
+    color: var(--couleur-texte);
+}
+
+.champ input,
+.champ select,
+.champ textarea {
+    width: 100%;
+    padding: 12px 14px;
+    background-color: var(--couleur-champ);
+    border: 2px solid var(--couleur-secondaire);
+    border-radius: var(--bordure-arrondie);
+    color: var(--couleur-texte);
+    font-family: var(--police-texte);
+    font-size: 1rem;
+    transition: border-color var(--duree-transition);
+}
+
+.champ input:focus,
+.champ select:focus,
+.champ textarea:focus {
+    border-color: var(--couleur-or);
+    outline: none;
+}
+
+.champ-en-erreur input,
+.champ-en-erreur select,
+.champ-en-erreur textarea {
+    border-color: var(--couleur-message-erreur);
+    animation: tremblement 0.4s ease;
+}
+
+.message-champ {
+    color: var(--couleur-message-erreur);
+    font-size: 0.9rem;
+    min-height: 1.2em;
+    margin: 0;
+}
+
+.alerte {
+    padding: 12px 16px;
+    border-radius: 0;
+    border-left: 4px solid;
+    margin-bottom: var(--marge);
+}
+
+.alerte-erreur {
+    background-color: rgba(240, 149, 149, 0.1);
+    border-color: var(--couleur-message-erreur);
+    color: var(--couleur-message-erreur);
+}
+
+.alerte-succes {
+    background-color: rgba(159, 211, 164, 0.1);
+    border-color: var(--couleur-message-succes);
+    color: var(--couleur-message-succes);
+}
+
+.masque {
+    display: none !important;
+}
+
+.visible-lecteur-ecran {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@keyframes tremblement {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2.6rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .titre-film {
+        font-size: 2rem;
+    }
+
+    main {
+        padding: calc(var(--marge) * 3) calc(var(--marge) * 2);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
