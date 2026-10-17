@@ -7,8 +7,8 @@ const liensVisiteur = [
     { texte: "Films à l'affiche", adresse: "/index.html" },
     { texte: "Le cinéma", adresse: "/le-cinema.html" },
     { texte: "Contact", adresse: "/contact.html" },
-    { texte: "Connexion", adresse: "/login.html" },
-    { texte: "Inscription", adresse: "/register.html" }
+    { texte: "Connexion", adresse: "/connexion.html" },
+    { texte: "Inscription", adresse: "/inscription.html" }
 ];
 
 const liensClient = [

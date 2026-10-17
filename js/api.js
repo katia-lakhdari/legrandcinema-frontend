@@ -1,6 +1,6 @@
 export const URL_BACKEND = "http://localhost:8080";
 export const CLE_SESSION = "session";
-export const PAGE_CONNEXION = "/login.html";
+export const PAGE_CONNEXION = "/connexion.html";
 
 export class ErreurBackend extends Error {
     constructor(message, statut, erreurs = {}) {
@@ -34,7 +34,7 @@ export async function appelerBackend(chemin, methode = "GET", donnees = null) {
         throw new ErreurBackend("Le serveur ne répond pas. Réessayez dans un instant.", 0);
     }
 
-    if (reponse.status === 401 && session !== null) {
+    if (reponse.status === 401 && session !== null && !chemin.startsWith("/api/auth/")) {
         sessionStorage.removeItem(CLE_SESSION);
         window.location.href = PAGE_CONNEXION;
         throw new ErreurBackend("Votre session a expiré. Veuillez vous reconnecter.", 401);
