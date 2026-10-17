@@ -130,7 +130,7 @@
 }
 
 #seances-film {
-    margin-top: calc(var(--marge) * 3);
+    margin-top: var(--marge);
 }
 
 #liste-seances {
@@ -215,19 +215,15 @@
 
     #fiche-film {
         grid-template-columns: 300px 1fr;
-        grid-template-rows: auto auto 1fr;
+        grid-template-rows: auto auto auto 1fr;
         column-gap: calc(var(--marge) * 2);
         align-items: start;
     }
 
     #image-detail {
-        grid-row: 1 / span 3;
+        grid-row: 1 / span 4;
         max-width: none;
         margin: 0;
-    }
-
-    #liste-seances {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
