@@ -1,6 +1,8 @@
 import { appelerBackend } from "./api.js";
-import { enregistrerSession, ROLE_ADMIN, PAGE_ACCUEIL } from "./auth.js";
+import { enregistrerSession, redirigerSiConnecte, ROLE_ADMIN, PAGE_ACCUEIL } from "./auth.js";
 import { effacerErreurs, afficherErreurChamp, afficherErreurs, desactiverBouton, reactiverBouton } from "./formulaire.js";
+
+redirigerSiConnecte();
 
 const PAGE_ADMIN = "/admin/dashboard.html";
 
