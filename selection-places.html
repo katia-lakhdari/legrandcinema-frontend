@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choix des places | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/films.css" />
+    <link rel="stylesheet" href="/css/selection-places.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <a id="lien-retour-film" href="/index.html" class="lien-retour"
+        >← Retour au film</a
+      >
+      <div
+        id="alerte-formulaire"
+        class="alerte alerte-erreur masque"
+        role="alert"
+      ></div>
+      <section id="choix-places" class="masque">
+        <div id="infos-seance">
+          <h1 id="titre-seance" class="titre-film"></h1>
+          <p id="precisions-seance" class="precisions-film"></p>
+        </div>
+        <ul id="legende" aria-label="Légende du plan">
+          <li><span class="place" aria-hidden="true"></span>Libre</li>
+          <li>
+            <span class="place place-prise" aria-hidden="true">✕</span>Prise
+          </li>
+          <li>
+            <span class="place place-choisie" aria-hidden="true">✓</span>Choisie
+          </li>
+        </ul>
+        <div id="ecran" aria-hidden="true">Écran</div>
+        <div id="plan-salle" aria-label="Plan de la salle"></div>
+        <p id="recapitulatif" role="status"></p>
+        <button
+          type="button"
+          id="bouton-formulaire"
+          class="btn btn-large"
+          disabled
+        >
+          Valider mes places
+        </button>
+      </section>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/selection-places.js"></script>
+  </body>
+</html>
