@@ -1,4 +1,5 @@
 import { appelerBackend } from "./api.js";
+import { formaterDuree } from "./format.js";
 
 const PAGE_DETAIL_FILM = "/film-detail.html";
 const MESSAGE_AUCUN_FILM = "Aucun film à l'affiche pour le moment. Revenez bientôt !";
@@ -10,18 +11,6 @@ const etatVide = document.getElementById("etat-vide");
 const alerteFilms = document.getElementById("alerte-films");
 
 let filmsAffiche = [];
-
-function formaterDuree(minutes) {
-    const heures = Math.floor(minutes / 60);
-    const reste = minutes % 60;
-    if (heures === 0) {
-        return reste + " min";
-    }
-    if (reste === 0) {
-        return heures + " h";
-    }
-    return heures + " h " + String(reste).padStart(2, "0");
-}
 
 function creerCarteFilm(film) {
     const carte = document.createElement("li");

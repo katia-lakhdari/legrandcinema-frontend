@@ -91,11 +91,139 @@
     color: var(--couleur-texte-doux);
 }
 
+.lien-retour {
+    display: inline-block;
+    margin-bottom: calc(var(--marge) * 1.5);
+    font-family: var(--police-menu);
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.lien-retour:hover {
+    text-decoration: underline;
+}
+
+#fiche-film {
+    display: grid;
+    gap: var(--marge);
+}
+
+#image-detail {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    background-color: var(--couleur-carte);
+    border: 1px solid var(--couleur-secondaire);
+    border-radius: var(--bordure-arrondie);
+}
+
+#titre-detail {
+    margin: 0;
+    overflow-wrap: break-word;
+}
+
+#description-detail {
+    margin: 0;
+    max-width: 65ch;
+}
+
+#seances-film {
+    margin-top: var(--marge);
+}
+
+#liste-seances {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--marge);
+}
+
+.carte-seance {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--marge);
+    padding: var(--marge) calc(var(--marge) * 1.25);
+}
+
+.horaire-seance {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.horaire-seance::first-letter {
+    text-transform: uppercase;
+}
+
+.precisions-seance {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--couleur-texte-doux);
+}
+
+.actions-seance {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.actions-seance .btn {
+    padding: 10px 22px;
+}
+
+.badge-places {
+    padding: 4px 12px;
+    border: 1px solid var(--couleur-principale);
+    border-radius: var(--bordure-pilule);
+    background-color: var(--couleur-principale);
+    color: var(--couleur-sur-bouton);
+    font-family: var(--police-menu);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.badge-complet {
+    border-color: var(--couleur-texte-discret);
+    background-color: transparent;
+    color: var(--couleur-texte-doux);
+}
+
+.seance-complete {
+    border-style: dashed;
+    border-color: var(--couleur-texte-discret);
+}
+
+.seance-complete .horaire-seance {
+    color: var(--couleur-texte-doux);
+}
+
 @media (min-width: 768px) {
     #grille-films {
         grid-template-columns: repeat(3, 1fr);
         column-gap: calc(var(--marge) * 1.5);
         row-gap: calc(var(--marge) * 4.5);
+    }
+
+    #fiche-film {
+        grid-template-columns: 300px 1fr;
+        grid-template-rows: auto auto auto 1fr;
+        column-gap: calc(var(--marge) * 2);
+        align-items: start;
+    }
+
+    #image-detail {
+        grid-row: 1 / span 4;
+        max-width: none;
+        margin: 0;
     }
 }
 
