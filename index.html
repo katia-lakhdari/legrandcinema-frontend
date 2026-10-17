@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Films à l'affiche | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/films.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <h1>Films à l'affiche</h1>
+      <div
+        id="alerte-films"
+        class="alerte alerte-erreur masque"
+        role="alert"
+      ></div>
+      <section id="filtres-films" aria-label="Filtrer les films">
+        <div class="champ">
+          <label for="filtre-genre">Genre</label>
+          <select id="filtre-genre" name="filtre-genre">
+            <option value="">Tous les genres</option>
+          </select>
+        </div>
+      </section>
+      <p id="etat-vide" class="masque" role="status"></p>
+      <ul id="grille-films"></ul>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/index.js"></script>
+  </body>
+</html>

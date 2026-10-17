@@ -1,0 +1,106 @@
+#filtres-films {
+    max-width: 280px;
+}
+
+#grille-films {
+    list-style: none;
+    margin: calc(var(--marge) * 3.5) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--marge);
+    row-gap: calc(var(--marge) * 3.5);
+}
+
+.carte-film {
+    min-width: 0;
+}
+
+.lien-film {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    border-radius: var(--bordure-arrondie);
+    transition: transform var(--duree-transition);
+}
+
+.lien-film:hover,
+.lien-film:focus-visible {
+    color: inherit;
+    transform: translateY(-6px);
+}
+
+.affiche-film {
+    position: relative;
+}
+
+.affiche-film::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 0;
+    width: 70%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--couleur-or) 0 35%, var(--couleur-principale) 36% 62%, var(--couleur-secondaire) 63%);
+    box-shadow: 0 0 24px var(--couleur-principale);
+    opacity: 0;
+    transform: translate(-50%, 0);
+    transition: transform 0.6s ease, opacity 0.6s ease, background var(--duree-transition);
+}
+
+.lien-film:hover .affiche-film::before,
+.lien-film:focus-visible .affiche-film::before {
+    opacity: 1;
+    transform: translate(-50%, -38%);
+}
+
+.affiche-film img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    background-color: var(--couleur-carte);
+    border: 1px solid var(--couleur-secondaire);
+    border-radius: var(--bordure-arrondie);
+}
+
+.infos-film {
+    padding-top: 10px;
+}
+
+.carte-film .titre-film {
+    font-family: var(--police-titre);
+    font-size: 1.25rem;
+    overflow-wrap: break-word;
+    margin: 0 0 4px;
+}
+
+.precisions-film {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--couleur-texte-doux);
+}
+
+#etat-vide {
+    margin-top: calc(var(--marge) * 2);
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--couleur-texte-doux);
+}
+
+@media (min-width: 768px) {
+    #grille-films {
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: calc(var(--marge) * 1.5);
+        row-gap: calc(var(--marge) * 4.5);
+    }
+}
+
+@media (min-width: 1024px) {
+    #grille-films {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
