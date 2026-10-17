@@ -61,3 +61,10 @@ export function reactiverBouton() {
     bouton.textContent = bouton.dataset.texteInitial;
     bouton.disabled = false;
 }
+
+window.addEventListener("pageshow", function (evenement) {
+    const bouton = document.getElementById(ID_BOUTON);
+    if (evenement.persisted && bouton.disabled) {
+        reactiverBouton();
+    }
+});
