@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Film | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/films.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <a href="/index.html" class="lien-retour">← Films à l'affiche</a>
+      <div
+        id="alerte-films"
+        class="alerte alerte-erreur masque"
+        role="alert"
+      ></div>
+      <section id="fiche-film" class="masque">
+        <img id="image-detail" alt="" />
+        <h1 id="titre-detail" class="titre-film"></h1>
+        <p id="precisions-detail" class="precisions-film"></p>
+        <p id="description-detail"></p>
+      </section>
+      <section id="seances-film" class="masque">
+        <h2>Séances</h2>
+        <p id="etat-vide" class="masque" role="status"></p>
+        <ul id="liste-seances"></ul>
+      </section>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/film-detail.js"></script>
+  </body>
+</html>
