@@ -1,6 +1,8 @@
 import { appelerBackend } from "./api.js";
-import { enregistrerSession, PAGE_ACCUEIL } from "./auth.js";
+import { enregistrerSession, redirigerSiConnecte, PAGE_ACCUEIL } from "./auth.js";
 import { effacerErreurs, afficherErreurChamp, afficherErreurs, desactiverBouton, reactiverBouton } from "./formulaire.js";
+
+redirigerSiConnecte();
 
 const LONGUEUR_MIN_MOT_DE_PASSE = 8;
 
