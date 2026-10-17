@@ -1,6 +1,6 @@
 export const URL_BACKEND = "http://localhost:8080";
 export const CLE_SESSION = "session";
-export const PAGE_CONNEXION = "/login.html";
+export const PAGE_CONNEXION = "/connexion.html";
 
 export class ErreurBackend extends Error {
     constructor(message, statut, erreurs = {}) {
