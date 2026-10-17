@@ -40,3 +40,14 @@ export function exigerAdmin() {
     }
     return session;
 }
+
+export function redirigerSiConnecte() {
+    if (lireSession() !== null) {
+        window.location.href = PAGE_ACCUEIL;
+    }
+    window.addEventListener("pageshow", function (evenement) {
+        if (evenement.persisted && lireSession() !== null) {
+            window.location.href = PAGE_ACCUEIL;
+        }
+    });
+}
