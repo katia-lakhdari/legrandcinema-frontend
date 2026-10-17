@@ -1,12 +1,18 @@
 import { appelerBackend } from "./api.js";
-import { enregistrerSession, redirigerSiConnecte, ROLE_ADMIN, PAGE_ACCUEIL } from "./auth.js";
+import { enregistrerSession, redirigerSiConnecte, verifierRedirection, ROLE_ADMIN, PAGE_ACCUEIL } from "./auth.js";
 import { effacerErreurs, afficherErreurChamp, afficherErreurs, desactiverBouton, reactiverBouton } from "./formulaire.js";
 
 redirigerSiConnecte();
 
 const PAGE_ADMIN = "/admin/dashboard.html";
 
+const redirection = verifierRedirection();
 const formulaire = document.getElementById("formulaire-connexion");
+const lienInscription = document.getElementById("lien-inscription");
+
+if (redirection !== null) {
+    lienInscription.href += "?redirection=" + encodeURIComponent(redirection);
+}
 
 formulaire.addEventListener("submit", async function (evenement) {
     evenement.preventDefault();
@@ -33,7 +39,13 @@ formulaire.addEventListener("submit", async function (evenement) {
     try {
         const session = await appelerBackend("/api/auth/login", "POST", { email, motDePasse });
         enregistrerSession(session);
-        window.location.href = session.role === ROLE_ADMIN ? PAGE_ADMIN : PAGE_ACCUEIL;
+        if (redirection !== null) {
+            window.location.href = redirection;
+        } else if (session.role === ROLE_ADMIN) {
+            window.location.href = PAGE_ADMIN;
+        } else {
+            window.location.href = PAGE_ACCUEIL;
+        }
     } catch (erreur) {
         afficherErreurs(erreur);
         reactiverBouton();

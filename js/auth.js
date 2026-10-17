@@ -1,4 +1,4 @@
-import { CLE_SESSION, PAGE_CONNEXION } from "./api.js";
+import { CLE_SESSION, allerVersConnexion } from "./api.js";
 
 export const ROLE_ADMIN = "ADMIN";
 export const PAGE_ACCUEIL = "/index.html";
@@ -23,7 +23,7 @@ export function deconnecter() {
 export function exigerConnexion() {
     const session = lireSession();
     if (session === null) {
-        window.location.href = PAGE_CONNEXION;
+        allerVersConnexion();
         return null;
     }
     return session;
@@ -50,4 +50,15 @@ export function redirigerSiConnecte() {
             window.location.href = PAGE_ACCUEIL;
         }
     });
+}
+
+export function verifierRedirection() {
+    const redirection = new URLSearchParams(window.location.search).get("redirection");
+    if (redirection === null) {
+        return null;
+    }
+    if (!redirection.startsWith("/") || redirection.startsWith("//") || redirection.startsWith("/\\")) {
+        return null;
+    }
+    return redirection;
 }

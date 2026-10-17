@@ -1,12 +1,18 @@
 import { appelerBackend } from "./api.js";
-import { enregistrerSession, redirigerSiConnecte, PAGE_ACCUEIL } from "./auth.js";
+import { enregistrerSession, redirigerSiConnecte, verifierRedirection, PAGE_ACCUEIL } from "./auth.js";
 import { effacerErreurs, afficherErreurChamp, afficherErreurs, desactiverBouton, reactiverBouton } from "./formulaire.js";
 
 redirigerSiConnecte();
 
 const LONGUEUR_MIN_MOT_DE_PASSE = 8;
 
+const redirection = verifierRedirection();
 const formulaire = document.getElementById("formulaire-inscription");
+const lienConnexion = document.getElementById("lien-connexion");
+
+if (redirection !== null) {
+    lienConnexion.href += "?redirection=" + encodeURIComponent(redirection);
+}
 
 formulaire.addEventListener("submit", async function (evenement) {
     evenement.preventDefault();
@@ -51,7 +57,7 @@ formulaire.addEventListener("submit", async function (evenement) {
     try {
         const session = await appelerBackend("/api/auth/register", "POST", { prenom, nom, email, motDePasse });
         enregistrerSession(session);
-        window.location.href = PAGE_ACCUEIL;
+        window.location.href = redirection !== null ? redirection : PAGE_ACCUEIL;
     } catch (erreur) {
         if (erreur.statut === 409) {
             afficherErreurChamp("email", erreur.message);

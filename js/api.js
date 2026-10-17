@@ -36,7 +36,7 @@ export async function appelerBackend(chemin, methode = "GET", donnees = null) {
 
     if (reponse.status === 401 && session !== null && !chemin.startsWith("/api/auth/")) {
         sessionStorage.removeItem(CLE_SESSION);
-        window.location.href = PAGE_CONNEXION;
+        allerVersConnexion();
         throw new ErreurBackend("Votre session a expiré. Veuillez vous reconnecter.", 401);
     }
 
@@ -52,4 +52,9 @@ export async function appelerBackend(chemin, methode = "GET", donnees = null) {
     }
 
     return contenu;
+}
+
+export function allerVersConnexion() {
+    const pageDeDepart = window.location.pathname + window.location.search;
+    window.location.href = PAGE_CONNEXION + "?redirection=" + encodeURIComponent(pageDeDepart);
 }
