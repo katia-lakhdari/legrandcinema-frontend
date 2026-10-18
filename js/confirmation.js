@@ -1,4 +1,4 @@
-import { appelerBackend } from "./api.js";
+import { appelerBackend, chargerImage } from "./api.js";
 import { exigerConnexion } from "./auth.js";
 import { formaterDate, formaterHeure } from "./format.js";
 
@@ -9,6 +9,8 @@ const zoneErreur = document.getElementById("zone-erreur");
 const messageErreur = document.getElementById("message-erreur");
 const boutonRecharger = document.getElementById("bouton-recharger");
 const titreFilm = document.getElementById("titre-film");
+const qrcode = document.getElementById("qrcode");
+const erreurQrcode = document.getElementById("erreur-qrcode");
 const dateSeance = document.getElementById("date-seance");
 const heureSeance = document.getElementById("heure-seance");
 const nomSalle = document.getElementById("nom-salle");
@@ -38,6 +40,15 @@ function afficherBillet(billet) {
     zoneConfirmation.classList.remove("masque");
 }
 
+async function afficherQrCode(billet) {
+    try {
+        qrcode.src = await chargerImage("/api/billets/" + billet.id + "/qrcode");
+        qrcode.classList.remove("masque");
+    } catch {
+        erreurQrcode.classList.remove("masque");
+    }
+}
+
 async function chargerPage() {
     if (exigerConnexion() === null) {
         return;
@@ -57,6 +68,7 @@ async function chargerPage() {
             return;
         }
         afficherBillet(billetTrouve);
+        afficherQrCode(billetTrouve);
     } catch (erreur) {
         afficherErreur(erreur.message);
     }
