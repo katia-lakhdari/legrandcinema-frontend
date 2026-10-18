@@ -1,4 +1,5 @@
 export const URL_BACKEND = "http://localhost:8080";
+export const CLE_PUBLIQUE_STRIPE = "pk_test_51UCJe0BPS7qXX3GRJoxh66t9qSxHfMgh9MUdEOGg4fcZ9Nygbz72z8FFIUNUTGmXhaRTg2kbzaIqaBWwCQU025vb00jMLCszgJ";
 export const CLE_SESSION = "session";
 export const PAGE_CONNEXION = "/connexion.html";
 
