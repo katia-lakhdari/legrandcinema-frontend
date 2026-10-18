@@ -1,0 +1,60 @@
+#recapitulatif-paiement {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--marge) * 1.5);
+}
+
+#miniature-affiche {
+    width: 140px;
+    flex-shrink: 0;
+    border-radius: var(--bordure-arrondie);
+}
+
+#compte-a-rebours {
+    margin: calc(var(--marge) * 2) 0 var(--marge);
+    text-align: center;
+    font-family: var(--police-menu);
+    font-size: 1.1rem;
+    color: var(--couleur-or);
+}
+
+#lien-choix-places {
+    display: table;
+    margin: 0 auto;
+}
+
+#formulaire-carte {
+    margin-top: var(--marge);
+}
+
+.StripeElement {
+    padding: 12px 14px;
+    background-color: var(--couleur-champ);
+    border: 2px solid var(--couleur-secondaire);
+    border-radius: var(--bordure-arrondie);
+    transition: border-color var(--duree-transition);
+}
+
+.StripeElement--focus {
+    border-color: var(--couleur-or);
+}
+
+.StripeElement--invalid {
+    border-color: var(--couleur-message-erreur);
+}
+
+.ligne-champs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--marge);
+}
+
+@media (min-width: 768px) {
+    #recapitulatif-paiement {
+        gap: calc(var(--marge) * 3);
+    }
+
+    #miniature-affiche {
+        width: 240px;
+    }
+}
