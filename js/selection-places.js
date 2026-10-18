@@ -140,7 +140,7 @@ async function validerPlaces() {
             seanceId: Number(idSeance),
             placeIds: placesVerrouillees
         });
-        window.location.href = PAGE_PAIEMENT + "?reservation=" + reservation.id;
+        window.location.href = PAGE_PAIEMENT + "?reservation=" + reservation.id + "&seance=" + idSeance;
     } catch (erreur) {
         await libererPlaces(placesVerrouillees);
         reactiverBouton();
