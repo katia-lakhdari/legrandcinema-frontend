@@ -15,7 +15,7 @@
   <body>
     <header id="header-site"></header>
     <main>
-      <h1>Mes billets</h1>
+      <h1 id="titre-mes-billets">Mes billets</h1>
 
       <p id="chargement" role="status">Chargement de vos billets…</p>
 
@@ -40,7 +40,7 @@
 
       <section id="section-a-venir" class="masque" aria-label="Billets à venir">
         <div id="billets-a-venir"></div>
-        <div id="etat-vide-a-venir" class="masque">
+        <div id="etat-vide-a-venir" class="carte masque">
           <h2>Aucune séance prévue pour le moment</h2>
           <p>Et si on choisissait un film ?</p>
           <a href="/index.html" class="btn">Voir les films à l'affiche</a>
@@ -49,7 +49,7 @@
 
       <section id="section-passes" class="masque" aria-label="Billets passés">
         <div id="billets-passes"></div>
-        <div id="etat-vide-passes" class="masque">
+        <div id="etat-vide-passes" class="carte masque">
           <h2>Pas encore de séance passée</h2>
           <p>
             Il n'est jamais trop tard pour commencer votre histoire au Grand
@@ -73,6 +73,7 @@
 
       <template id="template-billet">
         <article class="carte billet">
+          <span class="badge masque">Utilisé</span>
           <div class="billet-qrcode">
             <img class="qrcode masque" alt="" width="160" height="160" />
             <p class="erreur-qrcode masque" role="status">
@@ -82,7 +83,6 @@
           </div>
           <div class="billet-infos">
             <h2 class="titre-film"></h2>
-            <span class="badge masque">Utilisé</span>
             <dl class="infos-billet">
               <div>
                 <dt>Date</dt>
