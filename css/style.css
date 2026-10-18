@@ -525,6 +525,116 @@ img {
     color: var(--couleur-texte-discret);
 }
 
+#zone-confirmation,
+#zone-introuvable,
+#zone-erreur {
+    text-align: center;
+}
+
+.billet {
+    display: grid;
+    gap: var(--marge);
+    max-width: 640px;
+    margin: calc(var(--marge) * 1.5) auto;
+}
+
+.billet-qrcode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: var(--marge);
+    border-bottom: 2px dashed rgba(212, 175, 55, 0.4);
+}
+
+.qrcode {
+    width: 160px;
+    height: 160px;
+    padding: 8px;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+#erreur-qrcode {
+    max-width: 200px;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--couleur-texte-doux);
+}
+
+.infos-billet {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--marge);
+    margin: 0;
+}
+
+.infos-billet dt {
+    font-family: var(--police-menu);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--couleur-or);
+}
+
+.infos-billet dd {
+    margin: 0;
+    font-family: var(--police-texte);
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.bon-a-savoir {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--couleur-texte-doux);
+}
+
+#zone-confirmation .btn-large {
+    max-width: 640px;
+}
+
+@media (min-width: 768px) {
+    .billet {
+        grid-template-columns: auto 1fr;
+        gap: var(--marge) 0;
+        text-align: left;
+    }
+
+    .billet-qrcode {
+        position: relative;
+        grid-row: span 2;
+        padding: 0 calc(var(--marge) * 1.5) 0 0;
+        border-bottom: 0;
+        border-right: 2px dashed rgba(212, 175, 55, 0.4);
+    }
+
+    .billet-qrcode::before,
+    .billet-qrcode::after {
+        content: "";
+        position: absolute;
+        right: -13px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: var(--couleur-fond);
+    }
+
+    .billet-qrcode::before {
+        top: calc(var(--marge) * -1.5 - 13px);
+    }
+
+    .billet-qrcode::after {
+        bottom: calc(var(--marge) * -1.5 - 13px);
+    }
+
+    .billet-infos,
+    .bon-a-savoir {
+        padding-left: calc(var(--marge) * 1.5);
+    }
+}
+
 @keyframes tremblement {
     0%, 100% { transform: translateX(0); }
     20%, 60% { transform: translateX(-6px); }

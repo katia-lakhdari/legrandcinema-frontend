@@ -55,6 +55,35 @@ export async function appelerBackend(chemin, methode = "GET", donnees = null) {
     return contenu;
 }
 
+export async function chargerImage(chemin) {
+    const session = JSON.parse(sessionStorage.getItem(CLE_SESSION));
+    const token = {};
+
+    if (session !== null) {
+        token["Authorization"] = `Bearer ${session.token}`;
+    }
+
+    let reponse;
+    try {
+        reponse = await fetch(URL_BACKEND + chemin, { headers: token });
+    } catch {
+        throw new ErreurBackend("Le serveur ne répond pas. Réessayez dans un instant.", 0);
+    }
+
+    if (reponse.status === 401 && session !== null) {
+        sessionStorage.removeItem(CLE_SESSION);
+        allerVersConnexion();
+        throw new ErreurBackend("Votre session a expiré. Veuillez vous reconnecter.", 401);
+    }
+
+    if (!reponse.ok) {
+        throw new ErreurBackend("L'image n'a pas pu être chargée.", reponse.status);
+    }
+
+    const image = await reponse.blob();
+    return URL.createObjectURL(image);
+}
+
 export function allerVersConnexion() {
     const pageDeDepart = window.location.pathname + window.location.search;
     window.location.href = PAGE_CONNEXION + "?redirection=" + encodeURIComponent(pageDeDepart);
