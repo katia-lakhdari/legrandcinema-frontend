@@ -10,16 +10,22 @@ export function formaterDuree(minutes) {
     return heures + " h " + String(reste).padStart(2, "0");
 }
 
-export function formaterHoraire(dateHeure) {
-    const date = new Date(dateHeure);
-    const jour = date.toLocaleDateString("fr-FR", {
+export function formaterDate(dateHeure) {
+    return new Date(dateHeure).toLocaleDateString("fr-FR", {
         weekday: "long",
         day: "numeric",
         month: "long"
     });
-    const heures = date.getHours();
+}
+
+export function formaterHeure(dateHeure) {
+    const date = new Date(dateHeure);
     const minutes = String(date.getMinutes()).padStart(2, "0");
-    return jour + " · " + heures + " h " + minutes;
+    return date.getHours() + " h " + minutes;
+}
+
+export function formaterHoraire(dateHeure) {
+    return formaterDate(dateHeure) + " · " + formaterHeure(dateHeure);
 }
 
 export function formaterPrix(prix) {
