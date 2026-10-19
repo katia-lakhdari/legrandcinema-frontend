@@ -1,5 +1,27 @@
-#filtres-films {
-    max-width: 280px;
+.accroche-cinema {
+    margin: 0 0 6px;
+    text-align: center;
+    font-family: var(--police-menu);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--couleur-principale);
+}
+
+#titre-films {
+    text-align: center;
+}
+
+#filtres-films .champ {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+#filtres-films select {
+    width: auto;
+    min-width: 200px;
 }
 
 #grille-films {
