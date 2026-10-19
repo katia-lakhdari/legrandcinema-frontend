@@ -481,22 +481,54 @@ img {
     text-align: center;
 }
 
-.logo-footer .arche {
-    width: 280px;
+.soleil {
+    position: relative;
+    width: 180px;
+    height: 90px;
+    margin-top: 8px;
+    overflow: hidden;
 }
 
-.logo-footer .arc {
-    stroke-dashoffset: 0;
+.soleil::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--couleur-or) 0 30%, var(--couleur-principale) 31% 55%, var(--couleur-secondaire) 56% 100%);
 }
 
-.logo-footer .texte-arche {
-    opacity: 1;
+.horizon {
+    width: 100%;
+    max-width: 360px;
+    height: 12px;
+    margin-top: -18px;
+    background: linear-gradient(
+        to bottom,
+        var(--couleur-or) 0 3px,
+        transparent 3px 5px,
+        var(--couleur-principale) 5px 8px,
+        transparent 8px 10px,
+        var(--couleur-secondaire) 10px 12px
+    );
 }
 
-#footer-site address {
-    font-family: var(--police-menu);
-    font-style: normal;
-    line-height: 1.7;
+#presentation-cinema {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.titre-presentation {
+    margin: 0;
+}
+
+.texte-presentation {
+    max-width: 60ch;
+    margin: 0;
     color: var(--couleur-texte-doux);
 }
 
@@ -522,6 +554,14 @@ img {
     border-top: 1px solid rgba(212, 175, 55, 0.2);
     font-family: var(--police-menu);
     font-size: 0.85rem;
+    color: var(--couleur-texte-discret);
+}
+
+.mention-tmdb {
+    max-width: 60ch;
+    margin: -10px 0 0;
+    font-family: var(--police-menu);
+    font-size: 0.75rem;
     color: var(--couleur-texte-discret);
 }
 
@@ -733,10 +773,6 @@ img {
 
     .vague {
         height: 72px;
-    }
-
-    .logo-footer .arche {
-        width: 340px;
     }
 }
 
