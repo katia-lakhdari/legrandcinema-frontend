@@ -45,17 +45,28 @@ function choisirLiensMenu(session) {
     return liensAdmin;
 }
 
-function creerArche(id) {
+function creerLogoMobile() {
     return `
-        <svg class="arche" viewBox="0 0 176 56" aria-hidden="true">
-            <path class="arc arc-or" pathLength="1" d="M4,52 A84,46 0 0 1 172,52"></path>
-            <path class="arc arc-principal" pathLength="1" d="M12,52 A76,40 0 0 1 164,52"></path>
-            <path class="arc arc-secondaire" pathLength="1" d="M20,52 A68,34 0 0 1 156,52"></path>
-            <path id="${id}" d="M32,54 A56,13 0 0 1 144,54" fill="none"></path>
-            <text class="texte-arche">
-                <textPath href="#${id}" startOffset="50%" text-anchor="middle" textLength="108" lengthAdjust="spacingAndGlyphs">LE GRAND CINÉMA</textPath>
-            </text>
+        <svg class="logo-mobile" viewBox="0 0 140 80" aria-hidden="true">
+            <path class="arc arc-or" pathLength="1" d="M6,76 A64,64 0 0 1 134,76"></path>
+            <path class="arc arc-principal" pathLength="1" d="M16,76 A54,54 0 0 1 124,76"></path>
+            <path class="arc arc-secondaire" pathLength="1" d="M24,76 A46,46 0 0 1 116,76"></path>
+            <text class="texte-arche" x="70" y="61" text-anchor="middle" font-size="11.5" letter-spacing="0.5">LE GRAND</text>
+            <text class="texte-arche" x="70" y="76" text-anchor="middle" font-size="15">CINÉMA</text>
         </svg>
+    `;
+}
+
+function creerLogoOrdinateur() {
+    return `
+        <span class="logo-ordinateur" aria-hidden="true">
+            <svg class="mini-arche" viewBox="0 0 60 34">
+                <path class="arc arc-or" pathLength="1" d="M4,32 A26,26 0 0 1 56,32"></path>
+                <path class="arc arc-principal" pathLength="1" d="M12,32 A18,18 0 0 1 48,32"></path>
+                <path class="arc arc-secondaire" pathLength="1" d="M20,32 A10,10 0 0 1 40,32"></path>
+            </svg>
+            <span class="nom-cinema">Le Grand Cinéma</span>
+        </span>
     `;
 }
 
@@ -78,7 +89,7 @@ function afficherHeader(session) {
     logo.className = "logo";
     logo.href = PAGE_ACCUEIL;
     logo.setAttribute("aria-label", "Le Grand Cinéma, retour à l'accueil");
-    logo.innerHTML = creerArche("chemin-arche-header");
+    logo.innerHTML = creerLogoMobile() + creerLogoOrdinateur();
     header.appendChild(logo);
 
     if (estPageAdmin) {
@@ -186,6 +197,7 @@ function appliquerPalette(palette) {
         boutonPalette.textContent = "Soleil";
     }
     boutonPalette.setAttribute("aria-label", "Couleurs du site : " + boutonPalette.textContent);
+    boutonPalette.title = "Couleurs du site : " + boutonPalette.textContent;
 }
 
 function changerPalette() {
