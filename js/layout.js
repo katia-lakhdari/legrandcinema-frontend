@@ -5,7 +5,6 @@ const THEME_CANARD = "canard";
 
 const liensVisiteur = [
     { texte: "Films à l'affiche", adresse: "/index.html" },
-    { texte: "Le cinéma", adresse: "/le-cinema.html" },
     { texte: "Contact", adresse: "/contact.html" },
     { texte: "Connexion", adresse: "/connexion.html" },
     { texte: "Inscription", adresse: "/inscription.html" }
@@ -13,7 +12,6 @@ const liensVisiteur = [
 
 const liensClient = [
     { texte: "Films à l'affiche", adresse: "/index.html" },
-    { texte: "Le cinéma", adresse: "/le-cinema.html" },
     { texte: "Contact", adresse: "/contact.html" },
     { texte: "Mes billets", adresse: "/mes-billets.html" }
 ];
@@ -32,6 +30,7 @@ const liensEspaceAdmin = [
 ];
 
 const estPageAdmin = window.location.pathname.startsWith("/admin/");
+const estPageAccueil = window.location.pathname === "/" || window.location.pathname === PAGE_ACCUEIL;
 
 function choisirLiensMenu(session) {
     if (session === null) {
@@ -141,18 +140,38 @@ function afficherHeader(session) {
     header.appendChild(menu);
 }
 
+function creerSoleil() {
+    return `
+        <div class="soleil" aria-hidden="true"></div>
+        <div class="horizon" aria-hidden="true"></div>
+    `;
+}
+
+function creerPresentation() {
+    return `
+        <section id="presentation-cinema">
+            <h2 class="titre-presentation">Notre maison</h2>
+            <p class="texte-presentation">Depuis 1964, nous ouvrons les portes d'une institution de la culture nancéienne. Nous vous accueillons également lors d'événements comme le festival de jazz de Nancy, pour des concerts, des showcases privés ainsi que des interviews d'artistes. Réservez votre place en ligne.</p>
+        </section>
+    `;
+}
+
 function afficherFooter() {
     const footer = document.getElementById("footer-site");
+    let presentation = "";
+    if (estPageAccueil) {
+        presentation = creerPresentation();
+    }
     footer.innerHTML = `
         ${creerVague()}
         <div class="contenu-footer">
-            <div class="logo-footer" role="img" aria-label="Le Grand Cinéma">${creerArche("chemin-arche-footer")}</div>
-            <address>13 rue du Plaisir<br>54000 Nancy<br>03 83 00 00 00</address>
+            ${creerSoleil()}
+            ${presentation}
             <nav aria-label="Informations">
-                <a href="/le-cinema.html">Le cinéma</a>
                 <a href="/contact.html">Contact</a>
             </nav>
             <p class="mention">© 2026 Le Grand Cinéma — projet de formation STUDI</p>
+            <p class="mention-tmdb" lang="en">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
         </div>
     `;
 }
