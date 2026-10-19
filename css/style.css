@@ -283,7 +283,7 @@ img {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 8px max(var(--marge), calc((100% - var(--largeur-page)) / 2 + var(--marge)));
+    padding: 8px var(--marge);
     background-color: var(--couleur-fond);
     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
 }
@@ -294,18 +294,34 @@ img {
     text-decoration: none;
 }
 
-.arche {
+.logo-mobile {
     display: block;
-    width: 260px;
-    max-width: 100%;
+    width: 150px;
     height: auto;
-    aspect-ratio: 176 / 56;
     overflow: visible;
+}
+
+.logo-ordinateur {
+    display: none;
+    align-items: center;
+    gap: 12px;
+}
+
+.mini-arche {
+    width: 96px;
+    overflow: visible;
+}
+
+.nom-cinema {
+    font-family: var(--police-titre);
+    font-size: 2.6rem;
+    color: var(--couleur-or);
+    white-space: nowrap;
 }
 
 .arc {
     fill: none;
-    stroke-width: 4;
+    stroke-width: 5;
     stroke-linecap: round;
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
@@ -326,8 +342,6 @@ img {
 
 .texte-arche {
     font-family: var(--police-titre);
-    font-size: 12.5px;
-    letter-spacing: 0.5px;
     fill: var(--couleur-texte);
     opacity: 0;
 }
@@ -437,14 +451,21 @@ img {
     font-size: 0.9rem;
 }
 
+#bouton-palette {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 0;
+}
+
 #bouton-palette::before {
     content: "";
-    width: 12px;
-    height: 12px;
-    margin-right: 6px;
+    width: 14px;
+    height: 14px;
+    margin-right: 7px;
     border-radius: 50%;
     background-color: var(--couleur-principale);
-    box-shadow: 6px 0 0 var(--couleur-secondaire);
+    box-shadow: 7px 0 0 var(--couleur-secondaire);
     transition: background-color var(--duree-transition), box-shadow var(--duree-transition);
 }
 
@@ -778,11 +799,16 @@ img {
 
 @media (min-width: 1024px) {
     #header-site {
-        flex-wrap: nowrap;
+        justify-content: center;
+        padding: 14px calc(var(--marge) * 2) 6px;
     }
 
-    #header-site .arche {
-        width: 320px;
+    .logo-mobile {
+        display: none;
+    }
+
+    .logo-ordinateur {
+        display: flex;
     }
 
     #bouton-menu {
@@ -796,7 +822,9 @@ img {
 
     .menu-principal {
         position: static;
+        flex-basis: 100%;
         flex-direction: row;
+        justify-content: center;
         align-items: center;
         padding: 0;
         background-color: transparent;
@@ -824,6 +852,7 @@ img {
     }
 
     .actions-menu {
+        flex-wrap: nowrap;
         padding: 0 0 0 8px;
     }
 }
