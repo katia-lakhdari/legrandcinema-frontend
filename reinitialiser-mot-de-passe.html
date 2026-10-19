@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nouveau mot de passe | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <h1>Nouveau mot de passe</h1>
+      <div
+        id="alerte-reussite"
+        class="alerte alerte-succes masque"
+        role="status"
+      >
+        Votre mot de passe a été modifié.
+        <a href="/connexion.html">Se connecter</a>
+      </div>
+      <form
+        id="formulaire-reinitialisation"
+        class="formulaire carte"
+        novalidate
+      >
+        <div
+          id="alerte-formulaire"
+          class="alerte alerte-erreur masque"
+          role="alert"
+        ></div>
+        <div class="champ">
+          <label for="nouveauMotDePasse">Nouveau mot de passe</label>
+          <input
+            type="password"
+            id="nouveauMotDePasse"
+            name="nouveauMotDePasse"
+            autocomplete="new-password"
+            aria-describedby="message-nouveauMotDePasse"
+          />
+          <p id="message-nouveauMotDePasse" class="message-champ"></p>
+        </div>
+        <div class="champ">
+          <label for="confirmationMotDePasse">Confirmez le mot de passe</label>
+          <input
+            type="password"
+            id="confirmationMotDePasse"
+            name="confirmationMotDePasse"
+            autocomplete="new-password"
+            aria-describedby="message-confirmationMotDePasse"
+          />
+          <p id="message-confirmationMotDePasse" class="message-champ"></p>
+        </div>
+        <button type="submit" id="bouton-formulaire" class="btn btn-large">
+          Enregistrer
+        </button>
+        <p>
+          Lien expiré ?
+          <a href="/mot-de-passe-oublie.html">Faire une nouvelle demande</a>
+        </p>
+      </form>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/reinitialiser-mot-de-passe.js"></script>
+  </body>
+</html>
