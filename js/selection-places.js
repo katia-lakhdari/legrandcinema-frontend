@@ -118,24 +118,33 @@ async function chargerPlan() {
 }
 
 async function libererPlaces(placesVerrouillees) {
-    for (const idPlace of placesVerrouillees) {
-        try {
-            await appelerBackend("/api/places/" + idPlace + "/liberer", "POST");
-        } catch {
-        }
-    }
+    await Promise.allSettled(placesVerrouillees.map(function (idPlace) {
+        return appelerBackend("/api/places/" + idPlace + "/liberer", "POST");
+    }));
 }
 
 async function validerPlaces() {
     effacerErreurs();
     desactiverBouton("Validation en cours…");
-    const placesVerrouillees = [];
+    const idsPlaces = Array.from(placesChoisies.keys());
+    let placesVerrouillees = [];
 
     try {
-        for (const idPlace of placesChoisies.keys()) {
-            await appelerBackend("/api/places/" + idPlace + "/verrouiller", "POST");
-            placesVerrouillees.push(idPlace);
+        const reponsesVerrouillage = await Promise.allSettled(idsPlaces.map(function (idPlace) {
+            return appelerBackend("/api/places/" + idPlace + "/verrouiller", "POST");
+        }));
+
+        placesVerrouillees = idsPlaces.filter(function (idPlace, index) {
+            return reponsesVerrouillage[index].status === "fulfilled";
+        });
+
+        const echecVerrouillage = reponsesVerrouillage.find(function (reponse) {
+            return reponse.status === "rejected";
+        });
+        if (echecVerrouillage !== undefined) {
+            throw echecVerrouillage.reason;
         }
+
         const reservation = await appelerBackend("/api/reservations", "POST", {
             seanceId: Number(idSeance),
             placeIds: placesVerrouillees
