@@ -16,45 +16,54 @@
     <header id="header-site"></header>
     <main>
       <h1>Connexion</h1>
-      <form id="formulaire-connexion" class="formulaire carte" novalidate>
-        <div
-          id="alerte-formulaire"
-          class="alerte alerte-erreur masque"
-          role="alert"
-        ></div>
-        <div class="champ">
-          <label for="email">Adresse email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            autocomplete="email"
-            aria-describedby="message-email"
-          />
-          <p id="message-email" class="message-champ"></p>
+      <div class="disposition-formulaire">
+        <div class="bloc-accueil">
+          <h2 class="titre-accueil">Contents de vous revoir.</h2>
+          <p class="texte-accueil">
+            Choisissez les places qui vous plaisent. Plus besoin de passer au
+            guichet : montrez simplement votre QR code à l'entrée.
+          </p>
         </div>
-        <div class="champ">
-          <label for="motDePasse">Mot de passe</label>
-          <input
-            type="password"
-            id="motDePasse"
-            name="motDePasse"
-            autocomplete="current-password"
-            aria-describedby="message-motDePasse"
-          />
-          <p id="message-motDePasse" class="message-champ"></p>
-        </div>
-        <p>
-          <a href="/mot-de-passe-oublie.html">Mot de passe oublié ?</a>
-        </p>
-        <button type="submit" id="bouton-formulaire" class="btn btn-large">
-          Se connecter
-        </button>
-        <p>
-          Pas encore de compte ?
-          <a id="lien-inscription" href="/inscription.html">Créer un compte</a>
-        </p>
-      </form>
+        <form id="formulaire-connexion" class="formulaire carte" novalidate>
+          <div
+            id="alerte-formulaire"
+            class="alerte alerte-erreur masque"
+            role="alert"
+          ></div>
+          <div class="champ">
+            <label for="email">Adresse email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              aria-describedby="message-email"
+            />
+            <p id="message-email" class="message-champ"></p>
+          </div>
+          <div class="champ">
+            <label for="motDePasse">Mot de passe</label>
+            <input
+              type="password"
+              id="motDePasse"
+              name="motDePasse"
+              autocomplete="current-password"
+              aria-describedby="message-motDePasse"
+            />
+            <p id="message-motDePasse" class="message-champ"></p>
+          </div>
+          <p>
+            <a href="/mot-de-passe-oublie.html">Mot de passe oublié ?</a>
+          </p>
+          <button type="submit" id="bouton-formulaire" class="btn btn-large">
+            Se connecter
+          </button>
+          <p>
+            Pas encore de compte ?
+            <a id="lien-inscription" href="/inscription.html">Créer un compte</a>
+          </p>
+        </form>
+      </div>
     </main>
     <footer id="footer-site"></footer>
     <script type="module" src="/js/layout.js"></script>
