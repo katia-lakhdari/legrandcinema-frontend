@@ -718,27 +718,7 @@ img {
     color: var(--couleur-texte-doux);
 }
 
-.badge {
-    position: absolute;
-    top: 26px;
-    right: -46px;
-    width: 190px;
-    padding: 6px 0;
-    transform: rotate(38deg);
-    background-color: var(--couleur-principale);
-    color: var(--couleur-sur-bouton);
-    font-family: var(--police-menu);
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-align: center;
-    text-transform: uppercase;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-}
-
 .billet-scanne {
-    position: relative;
-    overflow: hidden;
     border-color: var(--couleur-texte-discret);
 }
 

@@ -46,7 +46,6 @@ function fabriquerCarteBillet(billet) {
 
     if (billet.scanne) {
         carte.classList.add("billet-scanne");
-        carte.querySelector(".badge").classList.remove("masque");
         qrcode.alt = "QR code de votre billet, déjà utilisé";
     } else {
         qrcode.alt = "QR code de votre billet, à présenter à l'entrée de la salle";
