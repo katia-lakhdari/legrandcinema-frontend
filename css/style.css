@@ -702,28 +702,18 @@ img {
     max-width: 640px;
 }
 
-#onglets {
-    display: flex;
-    justify-content: center;
-    gap: var(--espace-s);
+#billets-a-venir .billet {
     margin-bottom: var(--espace-l);
 }
 
-#billets-a-venir .billet,
-#billets-passes .billet {
-    margin-bottom: var(--espace-l);
-}
-
-#etat-vide-a-venir,
-#etat-vide-passes {
+#etat-vide-a-venir {
     max-width: 640px;
     margin: 0 auto;
     padding: var(--espace-l) var(--espace-m);
     text-align: center;
 }
 
-#etat-vide-a-venir p,
-#etat-vide-passes p {
+#etat-vide-a-venir p {
     margin-bottom: var(--espace-m);
     color: var(--couleur-texte-doux);
 }
@@ -839,16 +829,14 @@ img {
 }
 
 @media (min-width: 1200px) {
-    #billets-a-venir,
-    #billets-passes {
+    #billets-a-venir {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--espace-l) var(--espace-m);
         margin-bottom: var(--espace-l);
     }
 
-    #billets-a-venir .billet,
-    #billets-passes .billet {
+    #billets-a-venir .billet {
         max-width: none;
         margin: 0;
     }
