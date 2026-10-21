@@ -7,6 +7,8 @@
     --couleur-texte-doux: #b9ad8c;
     --couleur-texte-discret: #8f8670;
     --couleur-sur-bouton: #140806;
+    --couleur-bouton-doux: #2c241c;
+    --couleur-bouton-doux-survol: #3a2f24;
     --couleur-message-erreur: #f09595;
     --couleur-message-succes: #9fd3a4;
 
@@ -20,8 +22,13 @@
 
     --bordure-arrondie: 12px;
     --bordure-pilule: 999px;
+    --espace-xs: 8px;
+    --espace-s: 16px;
+    --espace-m: 24px;
+    --espace-l: 40px;
+    --espace-xl: 64px;
     --marge: 16px;
-    --largeur-page: 1100px;
+    --largeur-page: 1280px;
     --duree-transition: 0.3s ease;
 }
 
@@ -68,7 +75,7 @@ main {
     width: 100%;
     max-width: var(--largeur-page);
     margin: 0 auto;
-    padding: calc(var(--marge) * 2) var(--marge);
+    padding: var(--espace-l) var(--espace-s);
     position: relative;
     z-index: 1;
 }
@@ -79,11 +86,15 @@ h2 {
     font-weight: 400;
     color: var(--couleur-or);
     line-height: 1.2;
-    margin: 0 0 var(--marge);
+    margin: 0 0 var(--espace-s);
 }
 
 h1 {
     font-size: 2rem;
+}
+
+main > h1 {
+    text-align: center;
 }
 
 h2 {
@@ -95,11 +106,11 @@ h4 {
     font-family: var(--police-texte);
     font-weight: 600;
     color: var(--couleur-texte);
-    margin: 0 0 calc(var(--marge) / 2);
+    margin: 0 0 var(--espace-xs);
 }
 
 p {
-    margin: 0 0 var(--marge);
+    margin: 0 0 var(--espace-s);
 }
 
 a {
@@ -129,14 +140,14 @@ img {
     color: var(--couleur-or);
     letter-spacing: 0.02em;
     line-height: 1.3;
-    margin: 0 0 calc(var(--marge) / 2);
+    margin: 0 0 var(--espace-xs);
 }
 
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: var(--espace-xs);
     padding: 12px 28px;
     border: 2px solid var(--couleur-principale);
     border-radius: var(--bordure-pilule);
@@ -147,29 +158,31 @@ img {
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color var(--duree-transition), border-color var(--duree-transition), transform var(--duree-transition);
+    transition: background-color var(--duree-transition), border-color var(--duree-transition), filter var(--duree-transition);
 }
 
 .btn:hover {
-    transform: translateY(-2px);
+    filter: brightness(1.12);
     color: var(--couleur-sur-bouton);
 }
 
 .btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    transform: none;
+    filter: none;
 }
 
 .btn-secondaire {
-    background-color: transparent;
-    border-color: var(--couleur-or);
-    color: var(--couleur-or);
+    background-color: var(--couleur-bouton-doux);
+    border-color: var(--couleur-bouton-doux);
+    color: var(--couleur-texte);
 }
 
 .btn-secondaire:hover {
-    background-color: var(--couleur-or);
-    color: var(--couleur-sur-bouton);
+    filter: none;
+    background-color: var(--couleur-bouton-doux-survol);
+    border-color: var(--couleur-bouton-doux-survol);
+    color: var(--couleur-texte);
 }
 
 .btn-large {
@@ -180,17 +193,34 @@ img {
 
 .carte {
     background-color: var(--couleur-carte);
-    border: 1px solid var(--couleur-secondaire);
+    border: 1px solid rgba(212, 175, 55, 0.15);
     border-radius: var(--bordure-arrondie);
-    padding: calc(var(--marge) * 1.5);
+    padding: var(--espace-m);
 }
 
 .formulaire {
     display: flex;
     flex-direction: column;
-    gap: var(--marge);
+    gap: var(--espace-xs);
     max-width: 420px;
     margin: 0 auto;
+}
+
+.bloc-accueil {
+    max-width: 420px;
+    margin: 0 auto var(--espace-m);
+    text-align: center;
+}
+
+.titre-accueil {
+    margin: 0 0 var(--espace-xs);
+    font-size: 1.5rem;
+}
+
+.texte-accueil {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--couleur-texte);
 }
 
 .champ {
@@ -208,7 +238,7 @@ img {
 .champ select,
 .champ textarea {
     width: 100%;
-    padding: 12px 14px;
+    padding: 10px 14px;
     background-color: var(--couleur-champ);
     border: 2px solid var(--couleur-secondaire);
     border-radius: var(--bordure-arrondie);
@@ -225,6 +255,12 @@ img {
     outline: none;
 }
 
+.champ input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px var(--couleur-champ) inset;
+    -webkit-text-fill-color: var(--couleur-texte);
+    caret-color: var(--couleur-texte);
+}
+
 .champ-en-erreur input,
 .champ-en-erreur select,
 .champ-en-erreur textarea {
@@ -235,15 +271,24 @@ img {
 .message-champ {
     color: var(--couleur-message-erreur);
     font-size: 0.9rem;
-    min-height: 1.2em;
     margin: 0;
+}
+
+.message-champ:empty {
+    display: none;
+}
+
+.ligne-champs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espace-xs);
 }
 
 .alerte {
     padding: 12px 16px;
-    border-radius: 0;
-    border-left: 4px solid;
-    margin-bottom: var(--marge);
+    border: 1px solid;
+    border-radius: var(--bordure-arrondie);
+    margin-bottom: var(--espace-s);
 }
 
 .alerte-erreur {
@@ -283,7 +328,7 @@ img {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 8px var(--marge);
+    padding: var(--espace-xs) var(--espace-s);
     background-color: var(--couleur-fond);
     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
 }
@@ -308,13 +353,13 @@ img {
 }
 
 .mini-arche {
-    width: 96px;
+    width: 120px;
     overflow: visible;
 }
 
 .nom-cinema {
     font-family: var(--police-titre);
-    font-size: 2.6rem;
+    font-size: 3.2rem;
     color: var(--couleur-or);
     white-space: nowrap;
 }
@@ -393,7 +438,7 @@ img {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 12px var(--marge) 20px;
+    padding: 12px var(--espace-s) 20px;
     background-color: var(--couleur-carte);
     border-bottom: 3px solid var(--couleur-principale);
     visibility: hidden;
@@ -472,7 +517,7 @@ img {
 #footer-site {
     position: relative;
     z-index: 1;
-    margin-top: calc(var(--marge) * 2);
+    margin-top: var(--espace-l);
 }
 
 .vague {
@@ -496,8 +541,8 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
-    padding: 8px var(--marge) 28px;
+    gap: var(--espace-s);
+    padding: var(--espace-xs) var(--espace-s) var(--espace-m);
     background-color: var(--couleur-carte);
     text-align: center;
 }
@@ -571,7 +616,7 @@ img {
     width: 100%;
     max-width: var(--largeur-page);
     margin: 0;
-    padding-top: var(--marge);
+    padding-top: var(--espace-s);
     border-top: 1px solid rgba(212, 175, 55, 0.2);
     font-family: var(--police-menu);
     font-size: 0.85rem;
@@ -594,9 +639,9 @@ img {
 
 .billet {
     display: grid;
-    gap: var(--marge);
+    gap: var(--espace-s);
     max-width: 640px;
-    margin: calc(var(--marge) * 1.5) auto;
+    margin: var(--espace-m) auto;
 }
 
 .billet-qrcode {
@@ -604,7 +649,7 @@ img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-bottom: var(--marge);
+    padding-bottom: var(--espace-s);
     border-bottom: 2px dashed rgba(212, 175, 55, 0.4);
 }
 
@@ -627,7 +672,7 @@ img {
 .infos-billet {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--marge);
+    gap: var(--espace-s);
     margin: 0;
 }
 
@@ -657,33 +702,29 @@ img {
     max-width: 640px;
 }
 
-#titre-mes-billets {
-    text-align: center;
-}
-
 #onglets {
     display: flex;
     justify-content: center;
-    gap: var(--marge);
-    margin-bottom: calc(var(--marge) * 2);
+    gap: var(--espace-s);
+    margin-bottom: var(--espace-l);
 }
 
 #billets-a-venir .billet,
 #billets-passes .billet {
-    margin-bottom: calc(var(--marge) * 3);
+    margin-bottom: var(--espace-l);
 }
 
 #etat-vide-a-venir,
 #etat-vide-passes {
     max-width: 640px;
     margin: 0 auto;
-    padding: calc(var(--marge) * 2.5) calc(var(--marge) * 1.5);
+    padding: var(--espace-l) var(--espace-m);
     text-align: center;
 }
 
 #etat-vide-a-venir p,
 #etat-vide-passes p {
-    margin-bottom: calc(var(--marge) * 1.5);
+    margin-bottom: var(--espace-m);
     color: var(--couleur-texte-doux);
 }
 
@@ -719,14 +760,14 @@ img {
 @media (min-width: 768px) {
     .billet {
         grid-template-columns: auto 1fr;
-        gap: var(--marge) 0;
+        gap: var(--espace-s) 0;
         text-align: left;
     }
 
     .billet-qrcode {
         position: relative;
         grid-row: span 2;
-        padding: 0 calc(var(--marge) * 1.5) 0 0;
+        padding: 0 var(--espace-m) 0 0;
         border-bottom: 0;
         border-right: 2px dashed rgba(212, 175, 55, 0.4);
     }
@@ -743,16 +784,16 @@ img {
     }
 
     .billet-qrcode::before {
-        top: calc(var(--marge) * -1.5 - 13px);
+        top: calc(var(--espace-m) * -1 - 13px);
     }
 
     .billet-qrcode::after {
-        bottom: calc(var(--marge) * -1.5 - 13px);
+        bottom: calc(var(--espace-m) * -1 - 13px);
     }
 
     .billet-infos,
     .bon-a-savoir {
-        padding-left: calc(var(--marge) * 1.5);
+        padding-left: var(--espace-m);
     }
 }
 
@@ -789,7 +830,7 @@ img {
     }
 
     main {
-        padding: calc(var(--marge) * 3) calc(var(--marge) * 2);
+        padding: var(--espace-l);
     }
 
     .vague {
@@ -797,10 +838,65 @@ img {
     }
 }
 
+@media (min-width: 1200px) {
+    #billets-a-venir,
+    #billets-passes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--espace-l) var(--espace-m);
+        margin-bottom: var(--espace-l);
+    }
+
+    #billets-a-venir .billet,
+    #billets-passes .billet {
+        max-width: none;
+        margin: 0;
+    }
+}
+
 @media (min-width: 1024px) {
+    .disposition-formulaire {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        align-items: start;
+        gap: var(--espace-xl);
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .bloc-accueil {
+        max-width: 36ch;
+        margin: 0;
+        padding-top: var(--espace-l);
+        text-align: left;
+    }
+
+    .titre-accueil {
+        margin-bottom: var(--espace-s);
+        font-size: 2rem;
+    }
+
+    .texte-accueil {
+        font-size: 1.25rem;
+        line-height: 1.7;
+    }
+
+    .disposition-formulaire .formulaire {
+        width: 100%;
+    }
+
+    .ligne-champs {
+        flex-direction: row;
+    }
+
+    .ligne-champs .champ {
+        flex: 1;
+        min-width: 0;
+    }
+
     #header-site {
         justify-content: center;
-        padding: 14px calc(var(--marge) * 2) 6px;
+        padding: 14px var(--espace-l) 6px;
     }
 
     .logo-mobile {
