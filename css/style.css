@@ -134,7 +134,7 @@ img {
 }
 
 .titre-film {
-    font-family: var(--police-film);
+    font-family: var(--police-titre);
     font-weight: 400;
     font-size: 1.6rem;
     color: var(--couleur-or);
@@ -905,10 +905,11 @@ img {
     }
 
     .menu-principal {
-        position: static;
+        position: relative;
         flex-basis: 100%;
         flex-direction: row;
         justify-content: center;
+        gap: var(--espace-l);
         align-items: center;
         padding: 0;
         background-color: transparent;
@@ -936,8 +937,13 @@ img {
     }
 
     .actions-menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
         flex-wrap: nowrap;
-        padding: 0 0 0 8px;
+        align-items: center;
+        padding: 0;
     }
 }
 
