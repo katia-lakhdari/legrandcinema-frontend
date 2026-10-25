@@ -1,3 +1,8 @@
+:root {
+    --fond-tableau: transparent;
+    --fond-tableau-survol: rgba(255, 255, 255, 0.06);
+}
+
 .barre-admin {
     display: flex;
     flex-wrap: wrap;
@@ -10,9 +15,25 @@
     margin-left: auto;
 }
 
+.barre-admin .btn,
+.bloc-camera .btn,
+.barre-places .btn {
+    background-color: transparent;
+    color: var(--couleur-principale);
+}
+
+.barre-admin .btn:hover,
+.bloc-camera .btn:hover,
+.barre-places .btn:not(:disabled):hover {
+    filter: none;
+    background-color: var(--couleur-principale);
+    color: var(--couleur-sur-bouton);
+}
+
 .tableau-admin {
     padding: 0;
     overflow-x: auto;
+    background-color: var(--fond-tableau);
 }
 
 .tableau-admin table {
@@ -24,8 +45,9 @@
 .tableau-admin td {
     padding: 12px var(--espace-s);
     text-align: left;
-    border-right: 1px solid rgba(212, 175, 55, 0.25);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    font-variant-numeric: tabular-nums;
+    border-right: 1px solid rgba(212, 175, 55, 0.12);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .tableau-admin th:last-child,
@@ -44,17 +66,46 @@
     border-bottom: none;
 }
 
+.tableau-admin tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
 .tableau-admin tbody tr:hover {
-    background-color: var(--couleur-champ);
+    background-color: var(--fond-tableau-survol);
 }
 
 .cellule-titre {
-    font-weight: 600;
+    font-weight: 500;
+}
+
+.cellule-horaire {
+    white-space: nowrap;
 }
 
 .tableau-admin .colonne-actions {
     text-align: right;
     white-space: nowrap;
+}
+
+.colonne-actions .btn {
+    padding: 4px 8px;
+    border: none;
+    background-color: transparent;
+    color: var(--couleur-texte);
+    font-weight: 500;
+}
+
+.colonne-actions .btn:hover {
+    filter: none;
+    background-color: transparent;
+    color: var(--couleur-texte);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.colonne-actions .btn-supprimer,
+.colonne-actions .btn-supprimer:hover {
+    color: var(--couleur-message-erreur);
 }
 
 .colonne-actions .btn + .btn {
