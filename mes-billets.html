@@ -19,43 +19,12 @@
 
       <p id="chargement" role="status">Chargement de vos billets…</p>
 
-      <div id="onglets" class="masque">
-        <button
-          type="button"
-          id="bouton-a-venir"
-          class="btn"
-          aria-pressed="true"
-        >
-          À venir
-        </button>
-        <button
-          type="button"
-          id="bouton-passes"
-          class="btn btn-secondaire"
-          aria-pressed="false"
-        >
-          Passés
-        </button>
-      </div>
-
       <section id="section-a-venir" class="masque" aria-label="Billets à venir">
         <div id="billets-a-venir"></div>
         <div id="etat-vide-a-venir" class="carte masque">
-          <h2>Aucune séance prévue pour le moment</h2>
+          <h2>Vous n'avez pas encore de billet</h2>
           <p>Et si on choisissait un film ?</p>
-          <a href="/index.html" class="btn">Voir les films à l'affiche</a>
-        </div>
-      </section>
-
-      <section id="section-passes" class="masque" aria-label="Billets passés">
-        <div id="billets-passes"></div>
-        <div id="etat-vide-passes" class="carte masque">
-          <h2>Pas encore de séance passée</h2>
-          <p>
-            Il n'est jamais trop tard pour commencer votre histoire au Grand
-            Cinéma.
-          </p>
-          <a href="/index.html" class="btn">Voir les films à l'affiche</a>
+          <a href="/index.html" class="btn">Voir les films</a>
         </div>
       </section>
 
@@ -73,7 +42,6 @@
 
       <template id="template-billet">
         <article class="carte billet">
-          <span class="badge masque">Utilisé</span>
           <div class="billet-qrcode">
             <img class="qrcode masque" alt="" width="160" height="160" />
             <p class="erreur-qrcode masque" role="status">

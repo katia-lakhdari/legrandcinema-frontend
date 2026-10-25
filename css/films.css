@@ -9,13 +9,19 @@
     color: var(--couleur-principale);
 }
 
-#titre-films {
+.entete-films {
+    margin-bottom: var(--espace-l);
     text-align: center;
+}
+
+.entete-films h1 {
+    margin-bottom: var(--espace-m);
 }
 
 #filtres-films .champ {
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 12px;
 }
 
@@ -26,12 +32,12 @@
 
 #grille-films {
     list-style: none;
-    margin: calc(var(--marge) * 3.5) 0 0;
+    margin: 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: var(--marge);
-    row-gap: calc(var(--marge) * 3.5);
+    column-gap: var(--espace-s);
+    row-gap: var(--espace-xl);
 }
 
 .carte-film {
@@ -43,13 +49,11 @@
     color: inherit;
     text-decoration: none;
     border-radius: var(--bordure-arrondie);
-    transition: transform var(--duree-transition);
 }
 
 .lien-film:hover,
 .lien-film:focus-visible {
     color: inherit;
-    transform: translateY(-6px);
 }
 
 .affiche-film {
@@ -85,7 +89,7 @@
     aspect-ratio: 2 / 3;
     object-fit: cover;
     background-color: var(--couleur-carte);
-    border: 1px solid var(--couleur-secondaire);
+    border: 1px solid rgba(212, 175, 55, 0.15);
     border-radius: var(--bordure-arrondie);
 }
 
@@ -107,7 +111,7 @@
 }
 
 #etat-vide {
-    margin-top: calc(var(--marge) * 2);
+    margin-top: var(--espace-l);
     text-align: center;
     font-size: 1.1rem;
     color: var(--couleur-texte-doux);
@@ -115,7 +119,7 @@
 
 .lien-retour {
     display: inline-block;
-    margin-bottom: calc(var(--marge) * 1.5);
+    margin-bottom: var(--espace-m);
     font-family: var(--police-menu);
     font-size: 0.95rem;
     text-decoration: none;
@@ -127,7 +131,7 @@
 
 #fiche-film {
     display: grid;
-    gap: var(--marge);
+    gap: var(--espace-s);
 }
 
 #image-detail {
@@ -137,11 +141,12 @@
     aspect-ratio: 2 / 3;
     object-fit: cover;
     background-color: var(--couleur-carte);
-    border: 1px solid var(--couleur-secondaire);
+    border: 1px solid rgba(212, 175, 55, 0.15);
     border-radius: var(--bordure-arrondie);
 }
 
 #titre-detail {
+    font-family: var(--police-film);
     margin: 0;
     overflow-wrap: break-word;
 }
@@ -152,7 +157,7 @@
 }
 
 #seances-film {
-    margin-top: var(--marge);
+    margin-top: var(--espace-s);
 }
 
 #liste-seances {
@@ -160,7 +165,7 @@
     margin: 0;
     padding: 0;
     display: grid;
-    gap: var(--marge);
+    gap: var(--espace-s);
 }
 
 .carte-seance {
@@ -168,8 +173,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: var(--marge);
-    padding: var(--marge) calc(var(--marge) * 1.25);
+    gap: var(--espace-s);
+    padding: var(--espace-s) var(--espace-m);
 }
 
 .horaire-seance {
@@ -208,8 +213,6 @@
     font-family: var(--police-menu);
     font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
     white-space: nowrap;
 }
 
@@ -231,14 +234,14 @@
 @media (min-width: 768px) {
     #grille-films {
         grid-template-columns: repeat(3, 1fr);
-        column-gap: calc(var(--marge) * 1.5);
-        row-gap: calc(var(--marge) * 4.5);
+        column-gap: var(--espace-m);
+        row-gap: var(--espace-xl);
     }
 
     #fiche-film {
         grid-template-columns: 300px 1fr;
         grid-template-rows: auto auto auto 1fr;
-        column-gap: calc(var(--marge) * 2);
+        column-gap: var(--espace-l);
         align-items: start;
     }
 
@@ -250,6 +253,22 @@
 }
 
 @media (min-width: 1024px) {
+    .entete-films {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: var(--espace-l);
+        text-align: left;
+    }
+
+    .entete-films h1 {
+        margin-bottom: 0;
+    }
+
+    .entete-films .accroche-cinema {
+        text-align: left;
+    }
+
     #grille-films {
         grid-template-columns: repeat(4, 1fr);
     }

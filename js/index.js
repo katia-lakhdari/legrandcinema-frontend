@@ -2,7 +2,7 @@ import { appelerBackend } from "./api.js";
 import { formaterDuree } from "./format.js";
 
 const PAGE_DETAIL_FILM = "/film-detail.html";
-const MESSAGE_AUCUN_FILM = "Aucun film à l'affiche pour le moment. Revenez bientôt !";
+const MESSAGE_AUCUN_FILM = "On vous prépare une programmation en or. Revenez vite !";
 
 const filtresFilms = document.getElementById("filtres-films");
 const filtreGenre = document.getElementById("filtre-genre");
