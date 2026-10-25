@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Places | Administration | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/films.css" />
+    <link rel="stylesheet" href="/css/selection-places.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <a href="/admin/seances.html" class="lien-retour">← Retour aux séances</a>
+
+      <p id="chargement" role="status">Chargement du plan…</p>
+
+      <div
+        id="message-succes"
+        class="alerte alerte-succes masque"
+        role="status"
+      ></div>
+      <div
+        id="alerte-page"
+        class="alerte alerte-erreur masque"
+        role="alert"
+      ></div>
+
+      <section id="section-places" class="masque">
+        <div id="infos-seance">
+          <h1 id="titre-seance" class="titre-film"></h1>
+          <p id="precisions-seance" class="precisions-film"></p>
+        </div>
+        <ul id="legende" aria-label="Légende du plan">
+          <li><span class="place" aria-hidden="true"></span>Libre</li>
+          <li>
+            <span class="place place-choisie" aria-hidden="true">✓</span>Choisie
+          </li>
+          <li>
+            <span class="place place-bloquee" aria-hidden="true"></span>Bloquée
+          </li>
+          <li>
+            <span class="place place-prise" aria-hidden="true">✕</span
+            >Indisponible
+          </li>
+        </ul>
+        <div id="ecran" aria-hidden="true">Écran</div>
+        <div id="plan-salle" aria-label="Plan de la salle"></div>
+        <p id="recapitulatif" role="status"></p>
+        <div class="barre-places">
+          <button type="button" id="bouton-bloquer" class="btn" disabled>
+            Bloquer la sélection
+          </button>
+        </div>
+      </section>
+
+      <section id="zone-erreur" class="masque">
+        <h2>Un petit entracte</h2>
+        <div
+          id="message-erreur"
+          class="alerte alerte-erreur"
+          role="alert"
+        ></div>
+        <button type="button" id="bouton-recharger" class="btn">
+          Recharger la page
+        </button>
+      </section>
+
+      <dialog
+        id="fenetre-blocage"
+        class="fenetre-admin"
+        aria-labelledby="titre-fenetre-blocage"
+      >
+        <form id="formulaire-blocage" class="formulaire" novalidate>
+          <h2 id="titre-fenetre-blocage"></h2>
+          <div
+            id="alerte-formulaire"
+            class="alerte alerte-erreur masque"
+            role="alert"
+          ></div>
+          <div class="champ">
+            <label for="raison">Raison du blocage</label>
+            <textarea
+              id="raison"
+              name="raison"
+              rows="3"
+              aria-describedby="message-raison"
+            ></textarea>
+            <p id="message-raison" class="message-champ"></p>
+          </div>
+          <div class="boutons-fenetre">
+            <button
+              type="button"
+              id="bouton-annuler-blocage"
+              class="btn btn-secondaire"
+            >
+              Annuler
+            </button>
+            <button type="submit" id="bouton-formulaire" class="btn">
+              Bloquer
+            </button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog
+        id="fenetre-deblocage"
+        class="fenetre-admin"
+        aria-labelledby="titre-fenetre-deblocage"
+        aria-describedby="texte-deblocage"
+      >
+        <h2 id="titre-fenetre-deblocage">
+          Débloquer la place <span id="numero-place-a-debloquer"></span> ?
+        </h2>
+        <p id="texte-deblocage">
+          Raison : <span id="raison-place-a-debloquer"></span>
+        </p>
+        <div
+          id="alerte-deblocage"
+          class="alerte alerte-erreur masque"
+          role="alert"
+        ></div>
+        <div class="boutons-fenetre">
+          <button
+            type="button"
+            id="bouton-annuler-deblocage"
+            class="btn btn-secondaire"
+            autofocus
+          >
+            Annuler
+          </button>
+          <button type="button" id="bouton-confirmer-deblocage" class="btn">
+            Débloquer
+          </button>
+        </div>
+      </dialog>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/admin-places.js"></script>
+  </body>
+</html>
