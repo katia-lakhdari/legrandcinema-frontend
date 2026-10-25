@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salles | Administration | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <h1>Salles</h1>
+
+      <p id="chargement" role="status">Chargement des salles…</p>
+
+      <section id="section-salles" class="masque" aria-label="Salles du cinéma">
+        <div
+          id="message-succes"
+          class="alerte alerte-succes masque"
+          role="status"
+        ></div>
+        <div class="barre-admin">
+          <button type="button" id="bouton-ajouter-salle" class="btn">
+            Ajouter une salle
+          </button>
+        </div>
+        <div id="tableau-salles" class="carte tableau-admin">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Type</th>
+                <th scope="col">Capacité</th>
+                <th scope="col" class="colonne-actions">
+                  <span class="visible-lecteur-ecran">Actions</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="corps-tableau-salles"></tbody>
+          </table>
+        </div>
+        <p id="etat-vide-salles" class="carte etat-vide-admin masque">
+          Aucune salle pour le moment.
+        </p>
+      </section>
+
+      <section id="zone-erreur" class="masque">
+        <h2>Un petit entracte</h2>
+        <div
+          id="message-erreur"
+          class="alerte alerte-erreur"
+          role="alert"
+        ></div>
+        <button type="button" id="bouton-recharger" class="btn">
+          Recharger la page
+        </button>
+      </section>
+
+      <template id="template-ligne-salle">
+        <tr>
+          <td class="cellule-titre"></td>
+          <td class="cellule-type"></td>
+          <td class="cellule-capacite"></td>
+          <td class="colonne-actions">
+            <button
+              type="button"
+              class="btn btn-secondaire btn-petit bouton-modifier"
+            >
+              Modifier
+            </button>
+            <button
+              type="button"
+              class="btn btn-supprimer btn-petit bouton-supprimer"
+            >
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </template>
+
+      <dialog
+        id="fenetre-salle"
+        class="fenetre-admin"
+        aria-labelledby="titre-fenetre-salle"
+      >
+        <form id="formulaire-salle" class="formulaire" novalidate>
+          <h2 id="titre-fenetre-salle">Nouvelle salle</h2>
+          <div
+            id="alerte-formulaire"
+            class="alerte alerte-erreur masque"
+            role="alert"
+          ></div>
+          <div class="champ">
+            <label for="nom">Nom</label>
+            <input
+              type="text"
+              id="nom"
+              name="nom"
+              aria-describedby="message-nom"
+            />
+            <p id="message-nom" class="message-champ"></p>
+          </div>
+          <div class="champ">
+            <label for="type">Type</label>
+            <select id="type" name="type" aria-describedby="message-type">
+              <option value="">Choisir un type</option>
+              <option value="PREMIUM_IMAX">Premium IMAX</option>
+              <option value="STANDARD">Standard</option>
+              <option value="VIP">VIP</option>
+              <option value="EVENEMENTIELLE">Événementielle</option>
+            </select>
+            <p id="message-type" class="message-champ"></p>
+          </div>
+          <div class="champ">
+            <label for="capacite">Capacité (nombre de places)</label>
+            <input
+              type="number"
+              id="capacite"
+              name="capacite"
+              min="1"
+              step="1"
+              inputmode="numeric"
+              aria-describedby="note-capacite message-capacite"
+            />
+            <p id="note-capacite" class="aide-champ masque">
+              La nouvelle capacité s'appliquera uniquement aux prochaines
+              séances.
+            </p>
+            <p id="message-capacite" class="message-champ"></p>
+          </div>
+          <div class="boutons-fenetre">
+            <button
+              type="button"
+              id="bouton-annuler-salle"
+              class="btn btn-secondaire"
+            >
+              Annuler
+            </button>
+            <button type="submit" id="bouton-formulaire" class="btn">
+              Enregistrer
+            </button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog
+        id="fenetre-suppression"
+        class="fenetre-admin"
+        aria-labelledby="titre-fenetre-suppression"
+        aria-describedby="texte-suppression"
+      >
+        <h2 id="titre-fenetre-suppression">
+          Supprimer la salle « <span id="nom-salle-a-supprimer"></span> » ?
+        </h2>
+        <p id="texte-suppression">Cette action est irréversible.</p>
+        <div
+          id="alerte-suppression"
+          class="alerte alerte-erreur masque"
+          role="alert"
+        ></div>
+        <div class="boutons-fenetre">
+          <button
+            type="button"
+            id="bouton-annuler-suppression"
+            class="btn btn-secondaire"
+            autofocus
+          >
+            Annuler
+          </button>
+          <button
+            type="button"
+            id="bouton-confirmer-suppression"
+            class="btn btn-supprimer"
+          >
+            Supprimer
+          </button>
+        </div>
+      </dialog>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/admin-salles.js"></script>
+  </body>
+</html>
