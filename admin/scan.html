@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scan des billets | Administration | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <h1>Scan des billets</h1>
+
+      <div class="disposition-scan">
+        <section class="bloc-scanner" aria-label="Scanner un billet">
+          <div class="viseur">
+            <span class="coin coin-haut-gauche" aria-hidden="true"></span>
+            <span class="coin coin-haut-droit" aria-hidden="true"></span>
+            <span class="coin coin-bas-gauche" aria-hidden="true"></span>
+            <span class="coin coin-bas-droit" aria-hidden="true"></span>
+            <div id="invite-camera" class="invite-camera">
+              <p>Présentez le QR code du billet devant la caméra.</p>
+              <button type="button" id="bouton-camera" class="lien-camera">
+                Activer la caméra
+              </button>
+            </div>
+            <div id="lecteur-camera" class="lecteur-camera masque"></div>
+          </div>
+          <button
+            type="button"
+            id="bouton-arreter-camera"
+            class="lien-camera masque"
+          >
+            Arrêter la caméra
+          </button>
+
+          <form id="formulaire-scan" class="saisie-code" novalidate>
+            <div
+              id="alerte-formulaire"
+              class="alerte alerte-erreur masque"
+              role="alert"
+            ></div>
+            <div class="champ">
+              <label for="qrCode">Ou saisissez le code du billet</label>
+              <div class="ligne-saisie">
+                <input
+                  type="text"
+                  id="qrCode"
+                  name="qrCode"
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-describedby="message-qrCode"
+                />
+                <button
+                  type="submit"
+                  id="bouton-formulaire"
+                  class="btn btn-petit bouton-verifier"
+                >
+                  Vérifier
+                </button>
+              </div>
+              <p id="message-qrCode" class="message-champ"></p>
+            </div>
+          </form>
+        </section>
+
+        <section class="colonne-resultat" aria-label="Résultat du scan">
+          <div id="resultat-scan" aria-live="polite">
+            <p id="resultat-attente" class="resultat-attente">
+              Prêt pour le prochain billet.
+            </p>
+            <article id="resultat-valide" class="resultat-scan resultat-valide masque">
+              <h2>Accès autorisé</h2>
+              <dl class="infos-scan">
+                <div>
+                  <dt>Film</dt>
+                  <dd id="scan-film"></dd>
+                </div>
+                <div>
+                  <dt>Séance</dt>
+                  <dd id="scan-seance"></dd>
+                </div>
+                <div>
+                  <dt>Client</dt>
+                  <dd id="scan-client"></dd>
+                </div>
+              </dl>
+            </article>
+            <article id="resultat-refuse" class="resultat-scan resultat-refuse masque">
+              <h2>Accès refusé</h2>
+              <p id="scan-raison-refus"></p>
+            </article>
+          </div>
+
+          <section
+            id="historique"
+            class="historique"
+            aria-labelledby="titre-historique"
+          >
+            <h2 id="titre-historique">Derniers scans</h2>
+            <p id="historique-vide" class="historique-vide">
+              Aucun billet scanné pour l'instant.
+            </p>
+            <ol id="liste-historique" class="liste-historique"></ol>
+          </section>
+        </section>
+      </div>
+
+      <template id="template-entree-historique">
+        <li class="entree-historique">
+          <span class="heure-scan"></span>
+          <span class="statut-scan" aria-hidden="true"></span>
+          <span class="detail-scan"></span>
+        </li>
+      </template>
+    </main>
+    <footer id="footer-site"></footer>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/admin-scan.js"></script>
+  </body>
+</html>
