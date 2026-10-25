@@ -5,6 +5,7 @@ import { effacerErreurs, afficherAlerte, afficherErreurs, desactiverBouton, reac
 
 const PAGE_FILM = "/film-detail.html";
 const PAGE_PAIEMENT = "/paiement.html";
+const TEXTE_RETOUR_FILM = "← Retour au film";
 const MESSAGE_SEANCE_INTROUVABLE = "Cette séance n'existe pas ou n'est plus disponible.";
 const MESSAGE_PLACE_PRISE = "Une des places choisies vient d'être prise par quelqu'un d'autre. Le plan a été mis à jour, choisissez à nouveau.";
 const MESSAGE_AUCUNE_PLACE = "Cliquez sur une place pour la choisir.";
@@ -26,6 +27,7 @@ function afficherSeance(seance) {
     titreSeance.textContent = seance.titreFilm;
     precisionsSeance.textContent = formaterHoraire(seance.dateHeure) + " · " + seance.nomSalle + " · " + formaterPrix(seance.prix) + " la place";
     lienRetourFilm.href = PAGE_FILM + "?id=" + seance.filmId;
+    lienRetourFilm.textContent = TEXTE_RETOUR_FILM;
     prixPlace = seance.prix;
 }
 
