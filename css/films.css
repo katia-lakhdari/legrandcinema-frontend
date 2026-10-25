@@ -213,8 +213,6 @@
     font-family: var(--police-menu);
     font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
     white-space: nowrap;
 }
 

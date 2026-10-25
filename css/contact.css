@@ -59,8 +59,6 @@ main {
     font-family: var(--police-menu);
     font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
 }
 
 .numero a {
@@ -119,8 +117,6 @@ main {
     font-family: var(--police-menu);
     font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
 }
 
 .horaires td {

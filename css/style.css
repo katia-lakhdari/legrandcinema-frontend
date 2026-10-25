@@ -420,8 +420,6 @@ img {
     font-family: var(--police-menu);
     font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
     color: var(--couleur-or);
 }
 
