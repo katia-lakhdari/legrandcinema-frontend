@@ -225,6 +225,11 @@
     border-radius: var(--bordure-arrondie);
 }
 
+.lien-places {
+    display: inline-block;
+    margin-top: var(--espace-s);
+}
+
 .place-bloquee,
 button.place-bloquee:hover {
     background-color: rgba(240, 149, 149, 0.15);
@@ -236,4 +241,187 @@ button.place-bloquee:hover {
 .barre-places {
     display: flex;
     justify-content: center;
+}
+
+.choix-phrase {
+    appearance: none;
+    field-sizing: content;
+    padding: 0 1.1em 0 0;
+    border: none;
+    border-bottom: 2px dotted var(--couleur-or);
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23d4af37' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right center / 0.7em;
+    color: var(--couleur-or);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.choix-phrase:hover {
+    border-bottom-style: solid;
+}
+
+.choix-phrase option {
+    background-color: var(--couleur-carte);
+    color: var(--couleur-texte);
+    font-weight: 400;
+}
+
+.synthese {
+    max-width: 60ch;
+    margin: 0 auto var(--espace-l);
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--couleur-texte-doux);
+}
+
+.synthese #synthese {
+    display: block;
+    margin-top: 4px;
+}
+
+.synthese strong {
+    color: var(--couleur-texte);
+    font-weight: 700;
+}
+
+.bloc-admin {
+    margin-bottom: var(--espace-l);
+}
+
+.bloc-admin h2 {
+    text-align: center;
+}
+
+.liste-seances {
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--fond-tableau);
+}
+
+.entete-seances,
+.resume-seance {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px var(--espace-s);
+    padding: 12px var(--espace-s) 12px var(--espace-l);
+}
+
+.entete-seances {
+    display: none;
+    font-family: var(--police-menu);
+    font-weight: 600;
+    color: var(--couleur-or);
+    border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+}
+
+.seance-depliable + .seance-depliable {
+    border-top: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.resume-seance {
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+}
+
+.resume-seance::-webkit-details-marker {
+    display: none;
+}
+
+.resume-seance::before {
+    content: "▸";
+    position: absolute;
+    left: var(--espace-s);
+    top: 12px;
+    color: var(--couleur-or);
+    transition: transform var(--duree-transition);
+}
+
+.seance-depliable[open] .resume-seance::before {
+    transform: rotate(90deg);
+}
+
+.resume-seance:hover {
+    background-color: var(--fond-tableau-survol);
+}
+
+.reservations-seance {
+    padding: 0 var(--espace-s) var(--espace-s) var(--espace-l);
+}
+
+.tableau-reservations {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.tableau-reservations th,
+.tableau-reservations td {
+    padding: 6px var(--espace-xs);
+    text-align: left;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.tableau-reservations th {
+    font-weight: 500;
+    color: var(--couleur-texte-doux);
+}
+
+.aucune-reservation {
+    margin: 0;
+    color: var(--couleur-texte-doux);
+}
+
+.remplissage {
+    display: flex;
+    align-items: center;
+    gap: var(--espace-xs);
+}
+
+.jauge {
+    flex: 1;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.jauge-niveau {
+    display: block;
+    height: 100%;
+}
+
+.jauge-faible {
+    background-color: var(--couleur-texte-discret);
+}
+
+.jauge-normale {
+    background-color: var(--couleur-principale);
+}
+
+.jauge-forte {
+    background-color: var(--couleur-or);
+}
+
+.pourcentage {
+    min-width: 3.5em;
+    text-align: right;
+}
+
+.statut-payee {
+    color: var(--couleur-message-succes);
+}
+
+.statut-attente {
+    color: var(--couleur-texte-doux);
+}
+
+@media (min-width: 768px) {
+    .entete-seances {
+        display: grid;
+    }
+
+    .entete-seances,
+    .resume-seance {
+        grid-template-columns: 1.4fr 1.4fr 0.8fr 1.2fr;
+        align-items: center;
+    }
 }
