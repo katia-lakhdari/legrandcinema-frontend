@@ -15,6 +15,7 @@ const TEXTE_FIN_PREVUE = "Fin prévue : ";
 const LONGUEUR_DATE_HEURE = 16;
 const FORMAT_DATE_COURTE = { weekday: "short", day: "numeric", month: "short" };
 const MILLISECONDES_PAR_MINUTE = 60000;
+const PAGE_PLACES = "/admin/places.html?seance=";
 
 const sectionSeances = document.getElementById("section-seances");
 const caseAfficherPassees = document.getElementById("afficher-passees");
@@ -83,7 +84,11 @@ function fabriquerLigne(seance, premiereDuJour) {
         return ligne;
     }
 
-    nommerBoutons(ligne, seance.titreFilm + ", " + formaterHoraireSeance(seance.dateHeure));
+    const description = seance.titreFilm + ", " + formaterHoraireSeance(seance.dateHeure);
+    const lienPlaces = ligne.querySelector(".lien-plan-places");
+    lienPlaces.href = PAGE_PLACES + seance.id;
+    lienPlaces.setAttribute("aria-label", lienPlaces.textContent.trim() + " " + description);
+    nommerBoutons(ligne, description);
     ligne.querySelector(".bouton-modifier").addEventListener("click", function () {
         ouvrirModification(seance);
     });

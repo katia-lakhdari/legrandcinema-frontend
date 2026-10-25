@@ -210,3 +210,16 @@
     font-size: 0.9rem;
     margin: 0;
 }
+
+.place-bloquee,
+button.place-bloquee:hover {
+    background-color: rgba(240, 149, 149, 0.15);
+    border-color: var(--couleur-message-erreur);
+    color: var(--couleur-message-erreur);
+    font-weight: 600;
+}
+
+.barre-places {
+    display: flex;
+    justify-content: center;
+}
