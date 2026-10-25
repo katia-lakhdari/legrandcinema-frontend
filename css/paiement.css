@@ -1,7 +1,7 @@
 #recapitulatif-paiement {
     display: flex;
     align-items: center;
-    gap: calc(var(--marge) * 1.5);
+    gap: var(--espace-m);
 }
 
 #miniature-affiche {
@@ -11,7 +11,7 @@
 }
 
 #compte-a-rebours {
-    margin: calc(var(--marge) * 2) 0 var(--marge);
+    margin: var(--espace-l) 0 var(--espace-s);
     text-align: center;
     font-family: var(--police-menu);
     font-size: 1.1rem;
@@ -24,7 +24,7 @@
 }
 
 #formulaire-carte {
-    margin-top: var(--marge);
+    margin-top: var(--espace-s);
 }
 
 .StripeElement {
@@ -46,12 +46,12 @@
 .ligne-champs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--marge);
+    gap: var(--espace-s);
 }
 
 @media (min-width: 768px) {
     #recapitulatif-paiement {
-        gap: calc(var(--marge) * 3);
+        gap: var(--espace-l);
     }
 
     #miniature-affiche {

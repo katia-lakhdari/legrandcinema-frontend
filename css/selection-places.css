@@ -1,5 +1,5 @@
 #infos-seance {
-    margin-bottom: calc(var(--marge) * 1.5);
+    margin-bottom: var(--espace-m);
 }
 
 #infos-seance .titre-film {
@@ -8,11 +8,11 @@
 
 #legende {
     list-style: none;
-    margin: 0 0 calc(var(--marge) * 2);
+    margin: 0 0 var(--espace-l);
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--marge);
+    gap: var(--espace-s);
     color: var(--couleur-texte-doux);
     font-size: 0.9rem;
 }
@@ -25,8 +25,8 @@
 
 #ecran {
     width: 80%;
-    margin: 0 auto calc(var(--marge) * 2);
-    padding-top: 8px;
+    margin: 0 auto var(--espace-l);
+    padding-top: var(--espace-xs);
     border-top: 4px solid var(--couleur-or);
     border-radius: 50% 50% 0 0 / 24px 24px 0 0;
     box-shadow: 0 -10px 20px -10px var(--couleur-or);
@@ -40,7 +40,7 @@
 
 #plan-salle {
     overflow-x: auto;
-    padding: 8px 0 var(--marge);
+    padding: var(--espace-xs) 0 var(--espace-s);
 }
 
 .rangee {
@@ -104,7 +104,7 @@ button.place-prise:hover {
 }
 
 #recapitulatif {
-    margin: calc(var(--marge) * 1.5) 0 var(--marge);
+    margin: var(--espace-m) 0 var(--espace-s);
     text-align: center;
     color: var(--couleur-texte-doux);
 }
