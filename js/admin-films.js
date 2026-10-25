@@ -2,22 +2,20 @@ import { appelerBackend } from "./api.js";
 import { exigerAdmin } from "./auth.js";
 import { formaterDuree } from "./format.js";
 import { effacerErreurs, afficherErreurs, desactiverBouton, reactiverBouton } from "./formulaire.js";
+import {
+    afficherContenu, afficherErreurChargement, afficherSucces, cacherSucces, afficherListe,
+    nommerBoutons, brancherFermeture, preparerSuppression, supprimer
+} from "./admin.js";
 
 const TITRE_AJOUT = "Nouveau film";
 const TITRE_MODIFICATION = "Modifier le film";
 const TEXTE_ENREGISTREMENT = "Enregistrement…";
-const TEXTE_SUPPRESSION = "Suppression…";
 
-const chargement = document.getElementById("chargement");
 const sectionFilms = document.getElementById("section-films");
-const messageSucces = document.getElementById("message-succes");
 const boutonAjouter = document.getElementById("bouton-ajouter-film");
 const tableauFilms = document.getElementById("tableau-films");
 const corpsTableau = document.getElementById("corps-tableau-films");
 const etatVide = document.getElementById("etat-vide-films");
-const zoneErreur = document.getElementById("zone-erreur");
-const messageErreur = document.getElementById("message-erreur");
-const boutonRecharger = document.getElementById("bouton-recharger");
 const templateLigne = document.getElementById("template-ligne-film");
 
 const fenetreFilm = document.getElementById("fenetre-film");
@@ -28,72 +26,33 @@ const champGenre = document.getElementById("genre");
 const champDuree = document.getElementById("duree");
 const champAffiche = document.getElementById("affiche");
 const champDescription = document.getElementById("description");
-const boutonAnnulerFilm = document.getElementById("bouton-annuler-film");
 
 const fenetreSuppression = document.getElementById("fenetre-suppression");
 const titreFilmASupprimer = document.getElementById("titre-film-a-supprimer");
 const alerteSuppression = document.getElementById("alerte-suppression");
 const boutonConfirmerSuppression = document.getElementById("bouton-confirmer-suppression");
-const boutonAnnulerSuppression = document.getElementById("bouton-annuler-suppression");
 
 let films = [];
 let filmEnModification = null;
 let filmASupprimer = null;
 
-function afficherErreurChargement(message) {
-    messageErreur.textContent = message;
-    chargement.classList.add("masque");
-    sectionFilms.classList.add("masque");
-    zoneErreur.classList.remove("masque");
-}
-
-function afficherSucces(message) {
-    messageSucces.textContent = message;
-    messageSucces.classList.remove("masque");
-}
-
-function cacherSucces() {
-    messageSucces.textContent = "";
-    messageSucces.classList.add("masque");
-}
-
 function fabriquerLigne(film) {
     const copie = templateLigne.content.cloneNode(true);
     const ligne = copie.querySelector("tr");
-    const boutonModifier = ligne.querySelector(".bouton-modifier");
-    const boutonSupprimer = ligne.querySelector(".bouton-supprimer");
 
     ligne.querySelector(".cellule-titre").textContent = film.titre;
     ligne.querySelector(".cellule-genre").textContent = film.genre;
     ligne.querySelector(".cellule-duree").textContent = formaterDuree(film.duree);
 
-    boutonModifier.setAttribute("aria-label", boutonModifier.textContent.trim() + " " + film.titre);
-    boutonSupprimer.setAttribute("aria-label", boutonSupprimer.textContent.trim() + " " + film.titre);
-
-    boutonModifier.addEventListener("click", function () {
+    nommerBoutons(ligne, film.titre);
+    ligne.querySelector(".bouton-modifier").addEventListener("click", function () {
         ouvrirModification(film);
     });
-    boutonSupprimer.addEventListener("click", function () {
+    ligne.querySelector(".bouton-supprimer").addEventListener("click", function () {
         ouvrirSuppression(film);
     });
 
     return ligne;
-}
-
-function afficherFilms() {
-    corpsTableau.replaceChildren();
-
-    if (films.length === 0) {
-        tableauFilms.classList.add("masque");
-        etatVide.classList.remove("masque");
-        return;
-    }
-
-    etatVide.classList.add("masque");
-    tableauFilms.classList.remove("masque");
-    films.forEach(function (film) {
-        corpsTableau.appendChild(fabriquerLigne(film));
-    });
 }
 
 async function chargerFilms() {
@@ -101,7 +60,7 @@ async function chargerFilms() {
     films = reponse.sort(function (a, b) {
         return a.titre.localeCompare(b.titre, "fr");
     });
-    afficherFilms();
+    afficherListe(films, tableauFilms, corpsTableau, etatVide, fabriquerLigne);
 }
 
 async function rafraichirApresAction(message) {
@@ -109,7 +68,7 @@ async function rafraichirApresAction(message) {
         await chargerFilms();
         afficherSucces(message);
     } catch (erreur) {
-        afficherErreurChargement(erreur.message);
+        afficherErreurChargement(sectionFilms, erreur.message);
     }
 }
 
@@ -147,9 +106,7 @@ function ouvrirSuppression(film) {
     cacherSucces();
     filmASupprimer = film;
     titreFilmASupprimer.textContent = film.titre;
-    alerteSuppression.textContent = "";
-    alerteSuppression.classList.add("masque");
-    boutonConfirmerSuppression.disabled = false;
+    preparerSuppression(alerteSuppression, boutonConfirmerSuppression);
     fenetreSuppression.showModal();
 }
 
@@ -186,22 +143,10 @@ fenetreFilm.addEventListener("close", function () {
 });
 
 boutonConfirmerSuppression.addEventListener("click", async function () {
-    const texteInitial = boutonConfirmerSuppression.textContent;
     const titre = filmASupprimer.titre;
-
-    boutonConfirmerSuppression.textContent = TEXTE_SUPPRESSION;
-    boutonConfirmerSuppression.disabled = true;
-
-    try {
-        await appelerBackend("/api/films/" + filmASupprimer.id, "DELETE");
-        boutonConfirmerSuppression.textContent = texteInitial;
-        fenetreSuppression.close();
+    const chemin = "/api/films/" + filmASupprimer.id;
+    if (await supprimer(chemin, fenetreSuppression, alerteSuppression, boutonConfirmerSuppression)) {
         await rafraichirApresAction("« " + titre + " » a été supprimé.");
-    } catch (erreur) {
-        boutonConfirmerSuppression.textContent = texteInitial;
-        boutonConfirmerSuppression.disabled = erreur.statut === 409;
-        alerteSuppression.textContent = erreur.message;
-        alerteSuppression.classList.remove("masque");
     }
 });
 
@@ -210,18 +155,8 @@ fenetreSuppression.addEventListener("close", function () {
 });
 
 boutonAjouter.addEventListener("click", ouvrirAjout);
-
-boutonAnnulerFilm.addEventListener("click", function () {
-    fenetreFilm.close();
-});
-
-boutonAnnulerSuppression.addEventListener("click", function () {
-    fenetreSuppression.close();
-});
-
-boutonRecharger.addEventListener("click", function () {
-    window.location.reload();
-});
+brancherFermeture(fenetreFilm, document.getElementById("bouton-annuler-film"));
+brancherFermeture(fenetreSuppression, document.getElementById("bouton-annuler-suppression"));
 
 async function chargerPage() {
     if (exigerAdmin() === null) {
@@ -230,10 +165,9 @@ async function chargerPage() {
 
     try {
         await chargerFilms();
-        chargement.classList.add("masque");
-        sectionFilms.classList.remove("masque");
+        afficherContenu(sectionFilms);
     } catch (erreur) {
-        afficherErreurChargement(erreur.message);
+        afficherErreurChargement(sectionFilms, erreur.message);
     }
 }
 
