@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mes billets | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <h1 id="titre-mes-billets">Mes billets</h1>
+
+      <p id="chargement" role="status">Chargement de vos billets…</p>
+
+      <section id="section-a-venir" class="masque" aria-label="Billets à venir">
+        <div id="billets-a-venir"></div>
+        <div id="etat-vide-a-venir" class="carte masque">
+          <h2>Vous n'avez pas encore de billet</h2>
+          <p>Et si on choisissait un film ?</p>
+          <a href="/index.html" class="btn">Voir les films</a>
+        </div>
+      </section>
+
+      <section id="zone-erreur" class="masque">
+        <h2>Un petit entracte</h2>
+        <div
+          id="message-erreur"
+          class="alerte alerte-erreur"
+          role="alert"
+        ></div>
+        <button type="button" id="bouton-recharger" class="btn">
+          Recharger la page
+        </button>
+      </section>
+
+      <template id="template-billet">
+        <article class="carte billet">
+          <div class="billet-qrcode">
+            <img class="qrcode masque" alt="" width="160" height="160" />
+            <p class="erreur-qrcode masque" role="status">
+              QR code indisponible pour le moment. Vous le retrouverez dans
+              l'e-mail de confirmation.
+            </p>
+          </div>
+          <div class="billet-infos">
+            <h2 class="titre-film"></h2>
+            <dl class="infos-billet">
+              <div>
+                <dt>Date</dt>
+                <dd class="date-seance"></dd>
+              </div>
+              <div>
+                <dt>Heure</dt>
+                <dd class="heure-seance"></dd>
+              </div>
+              <div>
+                <dt>Salle</dt>
+                <dd class="nom-salle"></dd>
+              </div>
+              <div>
+                <dt>Places</dt>
+                <dd class="numeros-places"></dd>
+              </div>
+            </dl>
+          </div>
+          <p class="bon-a-savoir">
+            <strong>Bon à savoir :</strong> arrivez 15 minutes avant le début de
+            la séance.
+          </p>
+        </article>
+      </template>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/mes-billets.js"></script>
+  </body>
+</html>

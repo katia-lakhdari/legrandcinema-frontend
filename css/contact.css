@@ -1,0 +1,211 @@
+main {
+    max-width: 720px;
+}
+
+.ticket-adresse {
+    display: flex;
+    margin-bottom: var(--espace-l);
+    background-color: var(--couleur-or);
+    color: var(--couleur-sur-bouton);
+    border-radius: var(--bordure-arrondie);
+    font-style: normal;
+}
+
+.ticket-adresse > div:first-child {
+    flex: 1;
+    padding: var(--espace-m);
+}
+
+.ticket-adresse p {
+    margin: 0;
+}
+
+.ticket-adresse > div:first-child p:first-child {
+    margin-bottom: 4px;
+    font-family: var(--police-titre);
+    font-size: 1.4rem;
+}
+
+.numero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--espace-s);
+    border-left: 2px dashed var(--couleur-fond);
+    text-align: center;
+}
+
+.numero::before,
+.numero::after {
+    content: "";
+    position: absolute;
+    left: -11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--couleur-fond);
+}
+
+.numero::before {
+    top: -10px;
+}
+
+.numero::after {
+    bottom: -10px;
+}
+
+.numero p {
+    font-family: var(--police-menu);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.numero a {
+    color: var(--couleur-sur-bouton);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.info-pratique {
+    margin-bottom: var(--espace-l);
+}
+
+.info-pratique h2 {
+    margin-bottom: var(--espace-xs);
+    font-size: 1.4rem;
+}
+
+.info-pratique p {
+    margin: 0;
+    color: var(--couleur-texte-doux);
+}
+
+.arche-horaires {
+    margin: 0 var(--espace-xs) var(--espace-l);
+    padding: var(--espace-l) var(--espace-m) var(--espace-s);
+    background-color: var(--couleur-carte);
+    border: 2px solid var(--couleur-principale);
+    border-radius: 200px 200px var(--bordure-arrondie) var(--bordure-arrondie);
+    outline: 2px solid var(--couleur-or);
+    outline-offset: 6px;
+}
+
+.titre-horaires {
+    margin: 0 0 var(--espace-s);
+    text-align: center;
+}
+
+.horaires {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.horaires th,
+.horaires td {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--couleur-secondaire);
+}
+
+.horaires tr:last-child th,
+.horaires tr:last-child td {
+    border-bottom: none;
+}
+
+.horaires th {
+    text-align: left;
+    font-family: var(--police-menu);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.horaires td {
+    padding-left: var(--espace-s);
+    text-align: right;
+    color: var(--couleur-or);
+    white-space: nowrap;
+}
+
+#titre-accessibilite {
+    text-align: center;
+}
+
+.liste-accessibilite {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--espace-s);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rond-accessibilite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--espace-xs);
+    width: 100px;
+    text-align: center;
+}
+
+.rond-accessibilite i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border: 2px solid var(--couleur-principale);
+    border-radius: 50%;
+    color: var(--couleur-principale);
+    font-size: 30px;
+}
+
+.texte-accessibilite {
+    margin-top: var(--espace-m);
+    text-align: center;
+    color: var(--couleur-texte-doux);
+}
+
+@media (min-width: 1024px) {
+    main {
+        max-width: var(--largeur-page);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: var(--espace-xl);
+        align-items: start;
+    }
+
+    main > h1 {
+        grid-column: 1 / -1;
+    }
+
+    .ticket-adresse,
+    .info-pratique {
+        grid-column: 1;
+    }
+
+    .arche-horaires {
+        grid-column: 2;
+        grid-row: 2 / span 3;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .horaires th,
+    .horaires td {
+        padding: var(--espace-s) 0;
+    }
+
+    [aria-labelledby="titre-accessibilite"] {
+        grid-column: 1 / -1;
+        padding-top: var(--espace-l);
+        border-top: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .rond-accessibilite {
+        width: 160px;
+    }
+}

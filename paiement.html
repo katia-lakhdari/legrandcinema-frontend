@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paiement | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/films.css" />
+    <link rel="stylesheet" href="/css/paiement.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <p id="bandeau-demo" class="alerte" role="note">
+        Site de démonstration : aucun vrai paiement. Carte de test :
+        <strong>4242 4242 4242 4242</strong> · date <strong>12/30</strong> ·
+        code <strong>123</strong>
+      </p>
+      <div
+        id="alerte-formulaire"
+        class="alerte alerte-erreur masque"
+        role="alert"
+      ></div>
+      <section id="paiement" class="masque">
+        <div id="recapitulatif-paiement" class="carte">
+          <img id="miniature-affiche" src="" alt="" />
+          <div>
+            <h1 id="titre-reservation" class="titre-film"></h1>
+            <p id="precisions-reservation" class="precisions-film"></p>
+            <p id="montant-total"></p>
+          </div>
+        </div>
+        <p id="compte-a-rebours" role="timer"></p>
+        <a id="lien-choix-places" class="btn masque" href="/index.html"
+          >Choisir à nouveau mes places</a
+        >
+        <div id="formulaire-carte" class="formulaire">
+          <div class="champ">
+            <label>Numéro de carte</label>
+            <div id="numero-carte"></div>
+            <p id="message-numero-carte" class="message-champ"></p>
+          </div>
+          <div class="champs-carte">
+            <div class="champ">
+              <label>Date d'expiration</label>
+              <div id="expiration-carte"></div>
+              <p id="message-expiration-carte" class="message-champ"></p>
+            </div>
+            <div class="champ">
+              <label>Code de sécurité (CVC)</label>
+              <div id="code-carte"></div>
+              <p id="message-code-carte" class="message-champ"></p>
+            </div>
+          </div>
+          <div class="champ">
+            <label for="titulaire-carte">Nom du titulaire de la carte</label>
+            <input
+              type="text"
+              id="titulaire-carte"
+              name="titulaire-carte"
+              autocomplete="cc-name"
+              aria-describedby="message-titulaire-carte"
+            />
+            <p id="message-titulaire-carte" class="message-champ"></p>
+          </div>
+          <p id="erreur-paiement" class="message-champ" role="alert"></p>
+          <button
+            type="button"
+            id="bouton-formulaire"
+            class="btn btn-large"
+            disabled
+          >
+            Payer
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer id="footer-site"></footer>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/paiement.js"></script>
+  </body>
+</html>

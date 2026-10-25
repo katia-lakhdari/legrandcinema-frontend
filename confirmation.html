@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmation | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <p id="chargement" role="status">Chargement de votre billet…</p>
+
+      <section id="zone-confirmation" class="masque">
+        <h1>Félicitations, votre réservation est confirmée</h1>
+        <p>Vous allez voir</p>
+        <h2 id="titre-film" class="titre-film"></h2>
+
+        <article class="carte billet">
+          <div class="billet-qrcode">
+            <img id="qrcode" class="qrcode masque" alt="QR code de votre billet, à présenter à l'entrée de la salle" width="160" height="160" />
+            <p id="erreur-qrcode" class="masque" role="status">QR code indisponible pour le moment. Vous le retrouverez dans l'e-mail de confirmation.</p>
+          </div>
+          <div class="billet-infos">
+            <dl class="infos-billet">
+              <div>
+                <dt>Date</dt>
+                <dd id="date-seance"></dd>
+              </div>
+              <div>
+                <dt>Heure</dt>
+                <dd id="heure-seance"></dd>
+              </div>
+              <div>
+                <dt>Salle</dt>
+                <dd id="nom-salle"></dd>
+              </div>
+              <div>
+                <dt>Places</dt>
+                <dd id="numeros-places"></dd>
+              </div>
+            </dl>
+          </div>
+          <p class="bon-a-savoir"><strong>Bon à savoir :</strong> arrivez 15 minutes avant le début de la séance.</p>
+        </article>
+
+        <a href="/mes-billets.html" class="btn btn-large">Voir mes billets</a>
+      </section>
+
+      <section id="zone-introuvable" class="masque">
+        <h1>Réservation introuvable</h1>
+        <div class="alerte alerte-erreur" role="alert">Cette réservation est introuvable.</div>
+        <a href="/mes-billets.html" class="btn">Voir mes billets</a>
+        <a href="/index.html" class="btn btn-secondaire">Retour aux films</a>
+      </section>
+
+      <section id="zone-erreur" class="masque">
+        <h1>Un petit entracte</h1>
+        <div id="message-erreur" class="alerte alerte-erreur" role="alert"></div>
+        <p>Si vous venez de payer, votre billet vous est aussi envoyé par e-mail.</p>
+        <button type="button" id="bouton-recharger" class="btn">Recharger la page</button>
+      </section>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/confirmation.js"></script>
+  </body>
+</html>

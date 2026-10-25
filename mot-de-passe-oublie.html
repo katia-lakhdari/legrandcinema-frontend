@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mot de passe oublié | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <h1>Mot de passe oublié</h1>
+      <form
+        id="formulaire-mot-de-passe-oublie"
+        class="formulaire carte"
+        novalidate
+      >
+        <div
+          id="alerte-formulaire"
+          class="alerte alerte-erreur masque"
+          role="alert"
+        ></div>
+        <div
+          id="alerte-reussite"
+          class="alerte alerte-succes masque"
+          role="status"
+        ></div>
+        <p>
+          Entrez l'adresse email de votre compte. Nous vous enverrons un lien
+          pour choisir un nouveau mot de passe.
+        </p>
+        <div class="champ">
+          <label for="email">Adresse email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="email"
+            aria-describedby="message-email"
+          />
+          <p id="message-email" class="message-champ"></p>
+        </div>
+        <button type="submit" id="bouton-formulaire" class="btn btn-large">
+          Envoyer le lien
+        </button>
+        <p><a href="/connexion.html">Retour à la connexion</a></p>
+      </form>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/mot-de-passe-oublie.js"></script>
+  </body>
+</html>

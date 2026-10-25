@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscription | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <h1>Inscription</h1>
+      <div class="disposition-formulaire">
+        <div class="bloc-accueil">
+          <h2 class="titre-accueil">Bienvenue au Grand Cinéma.</h2>
+          <p class="texte-accueil">
+            Depuis 1964, on y vient pour les films, mais aussi pour les
+            concerts, les showcases et les rencontres avec les artistes. Créez
+            votre compte pour réserver vos places en ligne et éviter les files
+            interminables.
+          </p>
+        </div>
+        <form id="formulaire-inscription" class="formulaire carte" novalidate>
+          <div
+            id="alerte-formulaire"
+            class="alerte alerte-erreur masque"
+            role="alert"
+          ></div>
+          <div class="ligne-champs">
+            <div class="champ">
+              <label for="prenom">Prénom</label>
+              <input
+                type="text"
+                id="prenom"
+                name="prenom"
+                autocomplete="given-name"
+                aria-describedby="message-prenom"
+              />
+              <p id="message-prenom" class="message-champ"></p>
+            </div>
+            <div class="champ">
+              <label for="nom">Nom</label>
+              <input
+                type="text"
+                id="nom"
+                name="nom"
+                autocomplete="family-name"
+                aria-describedby="message-nom"
+              />
+              <p id="message-nom" class="message-champ"></p>
+            </div>
+          </div>
+          <div class="champ">
+            <label for="email">Adresse email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              aria-describedby="message-email"
+            />
+            <p id="message-email" class="message-champ"></p>
+          </div>
+          <div class="champ">
+            <label for="motDePasse">Mot de passe (8 caractères minimum)</label>
+            <input
+              type="password"
+              id="motDePasse"
+              name="motDePasse"
+              autocomplete="new-password"
+              aria-describedby="message-motDePasse"
+            />
+            <p id="message-motDePasse" class="message-champ"></p>
+          </div>
+          <div class="champ">
+            <label for="confirmationMotDePasse"
+              >Confirmation du mot de passe</label
+            >
+            <input
+              type="password"
+              id="confirmationMotDePasse"
+              name="confirmationMotDePasse"
+              autocomplete="new-password"
+              aria-describedby="message-confirmationMotDePasse"
+            />
+            <p id="message-confirmationMotDePasse" class="message-champ"></p>
+          </div>
+          <button type="submit" id="bouton-formulaire" class="btn btn-large">
+            Créer mon compte
+          </button>
+          <p>
+            Déjà un compte ?
+            <a id="lien-connexion" href="/connexion.html">Se connecter</a>
+          </p>
+        </form>
+      </div>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/inscription.js"></script>
+  </body>
+</html>

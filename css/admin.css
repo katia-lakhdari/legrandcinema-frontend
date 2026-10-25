@@ -1,0 +1,212 @@
+:root {
+    --fond-tableau: transparent;
+    --fond-tableau-survol: rgba(255, 255, 255, 0.06);
+}
+
+.barre-admin {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espace-s);
+    margin-bottom: var(--espace-s);
+}
+
+.barre-admin .btn {
+    margin-left: auto;
+}
+
+.case-a-cocher {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espace-xs);
+    cursor: pointer;
+}
+
+.case-a-cocher input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--couleur-principale);
+    cursor: pointer;
+}
+
+.barre-admin .btn,
+.bloc-camera .btn,
+.barre-places .btn {
+    background-color: transparent;
+    color: var(--couleur-principale);
+}
+
+.barre-admin .btn:hover,
+.bloc-camera .btn:hover,
+.barre-places .btn:not(:disabled):hover {
+    filter: none;
+    background-color: var(--couleur-principale);
+    color: var(--couleur-sur-bouton);
+}
+
+.tableau-admin {
+    padding: 0;
+    overflow-x: auto;
+    background-color: var(--fond-tableau);
+}
+
+.tableau-admin table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableau-admin th,
+.tableau-admin td {
+    padding: 12px var(--espace-s);
+    text-align: left;
+    font-variant-numeric: tabular-nums;
+    border-right: 1px solid rgba(212, 175, 55, 0.12);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.tableau-admin th:last-child,
+.tableau-admin td:last-child {
+    border-right: none;
+}
+
+.tableau-admin th {
+    font-family: var(--police-menu);
+    font-weight: 600;
+    color: var(--couleur-or);
+    border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+}
+
+.tableau-admin tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tableau-admin tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.tableau-admin tbody tr:hover {
+    background-color: var(--fond-tableau-survol);
+}
+
+.cellule-titre {
+    font-weight: 500;
+}
+
+.cellule-horaire {
+    white-space: nowrap;
+}
+
+.ligne-passee td {
+    color: var(--couleur-texte-discret);
+}
+
+.tableau-admin .colonne-actions {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.colonne-actions .btn {
+    padding: 4px 8px;
+    border: none;
+    background-color: transparent;
+    color: var(--couleur-texte);
+    font-weight: 500;
+}
+
+.colonne-actions .btn:hover {
+    filter: none;
+    background-color: transparent;
+    color: var(--couleur-texte);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.colonne-actions .btn-supprimer,
+.colonne-actions .btn-supprimer:hover {
+    color: var(--couleur-message-erreur);
+}
+
+.colonne-actions .btn + .btn {
+    margin-left: var(--espace-xs);
+}
+
+.btn-petit {
+    padding: 6px 16px;
+    font-size: 0.9rem;
+}
+
+.btn-supprimer {
+    background-color: transparent;
+    border-color: var(--couleur-message-erreur);
+    color: var(--couleur-message-erreur);
+}
+
+.btn-supprimer:hover {
+    filter: none;
+    background-color: rgba(240, 149, 149, 0.1);
+    color: var(--couleur-message-erreur);
+}
+
+.etat-vide-admin {
+    text-align: center;
+    color: var(--couleur-texte-doux);
+}
+
+.fenetre-admin {
+    width: calc(100% - 2 * var(--espace-s));
+    max-width: 560px;
+    max-height: calc(100dvh - 2 * var(--espace-s));
+    padding: var(--espace-m);
+    background-color: var(--couleur-carte);
+    color: var(--couleur-texte);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: var(--bordure-arrondie);
+}
+
+.fenetre-admin::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.fenetre-admin .formulaire {
+    max-width: none;
+}
+
+.fenetre-admin h2 {
+    font-size: 1.4rem;
+}
+
+.fenetre-admin textarea {
+    resize: vertical;
+}
+
+.boutons-fenetre {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--espace-xs);
+    margin-top: var(--espace-s);
+}
+
+.cellule-date {
+    white-space: nowrap;
+    color: var(--couleur-or);
+}
+
+.cellule-date::first-letter {
+    text-transform: uppercase;
+}
+
+.tableau-admin tbody tr.premiere-du-jour:not(:first-child) td {
+    border-top: 1px solid rgba(212, 175, 55, 0.45);
+}
+
+.champ select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.aide-champ {
+    color: var(--couleur-texte-doux);
+    font-size: 0.9rem;
+    margin: 0;
+}

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Films | Administration | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <h1>Films</h1>
+
+      <p id="chargement" role="status">Chargement des films…</p>
+
+      <section id="section-films" class="masque" aria-label="Catalogue des films">
+        <div
+          id="message-succes"
+          class="alerte alerte-succes masque"
+          role="status"
+        ></div>
+        <div class="barre-admin">
+          <button type="button" id="bouton-ajouter-film" class="btn">
+            Ajouter un film
+          </button>
+        </div>
+        <div id="tableau-films" class="carte tableau-admin">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Titre</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Durée</th>
+                <th scope="col" class="colonne-actions">
+                  <span class="visible-lecteur-ecran">Actions</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="corps-tableau-films"></tbody>
+          </table>
+        </div>
+        <p id="etat-vide-films" class="carte etat-vide-admin masque">
+          Aucun film pour le moment.
+        </p>
+      </section>
+
+      <section id="zone-erreur" class="masque">
+        <h2>Un petit entracte</h2>
+        <div
+          id="message-erreur"
+          class="alerte alerte-erreur"
+          role="alert"
+        ></div>
+        <button type="button" id="bouton-recharger" class="btn">
+          Recharger la page
+        </button>
+      </section>
+
+      <template id="template-ligne-film">
+        <tr>
+          <td class="cellule-titre"></td>
+          <td class="cellule-genre"></td>
+          <td class="cellule-duree"></td>
+          <td class="colonne-actions">
+            <button
+              type="button"
+              class="btn btn-secondaire btn-petit bouton-modifier"
+            >
+              Modifier
+            </button>
+            <button
+              type="button"
+              class="btn btn-supprimer btn-petit bouton-supprimer"
+            >
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </template>
+
+      <dialog
+        id="fenetre-film"
+        class="fenetre-admin"
+        aria-labelledby="titre-fenetre-film"
+      >
+        <form id="formulaire-film" class="formulaire" novalidate>
+          <h2 id="titre-fenetre-film">Nouveau film</h2>
+          <div
+            id="alerte-formulaire"
+            class="alerte alerte-erreur masque"
+            role="alert"
+          ></div>
+          <div class="champ">
+            <label for="titre">Titre</label>
+            <input
+              type="text"
+              id="titre"
+              name="titre"
+              aria-describedby="message-titre"
+            />
+            <p id="message-titre" class="message-champ"></p>
+          </div>
+          <div class="champ">
+            <label for="genre">Genre</label>
+            <input
+              type="text"
+              id="genre"
+              name="genre"
+              aria-describedby="message-genre"
+            />
+            <p id="message-genre" class="message-champ"></p>
+          </div>
+          <div class="champ">
+            <label for="duree">Durée (en minutes)</label>
+            <input
+              type="number"
+              id="duree"
+              name="duree"
+              min="1"
+              step="1"
+              inputmode="numeric"
+              aria-describedby="message-duree"
+            />
+            <p id="message-duree" class="message-champ"></p>
+          </div>
+          <div class="champ">
+            <label for="affiche">Affiche (adresse de l'image)</label>
+            <input
+              type="url"
+              id="affiche"
+              name="affiche"
+              aria-describedby="message-affiche"
+            />
+            <p id="message-affiche" class="message-champ"></p>
+          </div>
+          <div class="champ">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="5"
+              aria-describedby="message-description"
+            ></textarea>
+            <p id="message-description" class="message-champ"></p>
+          </div>
+          <div class="boutons-fenetre">
+            <button
+              type="button"
+              id="bouton-annuler-film"
+              class="btn btn-secondaire"
+            >
+              Annuler
+            </button>
+            <button type="submit" id="bouton-formulaire" class="btn">
+              Enregistrer
+            </button>
+          </div>
+        </form>
+      </dialog>
+
+      <dialog
+        id="fenetre-suppression"
+        class="fenetre-admin"
+        aria-labelledby="titre-fenetre-suppression"
+        aria-describedby="texte-suppression"
+      >
+        <h2 id="titre-fenetre-suppression">
+          Supprimer le film « <span id="titre-film-a-supprimer"></span> » ?
+        </h2>
+        <p id="texte-suppression">Cette action est irréversible.</p>
+        <div
+          id="alerte-suppression"
+          class="alerte alerte-erreur masque"
+          role="alert"
+        ></div>
+        <div class="boutons-fenetre">
+          <button
+            type="button"
+            id="bouton-annuler-suppression"
+            class="btn btn-secondaire"
+            autofocus
+          >
+            Annuler
+          </button>
+          <button
+            type="button"
+            id="bouton-confirmer-suppression"
+            class="btn btn-supprimer"
+          >
+            Supprimer
+          </button>
+        </div>
+      </dialog>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/admin-films.js"></script>
+  </body>
+</html>
