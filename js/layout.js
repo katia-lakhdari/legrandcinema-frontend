@@ -2,6 +2,7 @@ import { lireSession, deconnecter, ROLE_ADMIN, PAGE_ACCUEIL } from "./auth.js";
 
 const CLE_PALETTE = "palette";
 const THEME_CANARD = "canard";
+const CLE_ANIMATION_LOGO = "animationLogo";
 
 const liensVisiteur = [
     { texte: "Films à l'affiche", adresse: "/index.html" },
@@ -227,7 +228,12 @@ function fermerMenu() {
 
 function allumerArcs() {
     const logo = document.querySelector(".logo");
-    logo.classList.add("allume");
+    if (sessionStorage.getItem(CLE_ANIMATION_LOGO) === null) {
+        logo.classList.add("allume");
+        sessionStorage.setItem(CLE_ANIMATION_LOGO, "vue");
+    } else {
+        logo.classList.add("deja-allume");
+    }
 }
 
 document.addEventListener("keydown", function (evenement) {
