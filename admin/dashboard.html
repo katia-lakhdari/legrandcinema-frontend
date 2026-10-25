@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tableau de bord | Administration | Le Grand Cinéma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <header id="header-site"></header>
+    <main>
+      <h1>Tableau de bord</h1>
+
+      <p id="chargement" role="status">Chargement du tableau de bord…</p>
+
+      <div id="section-tableau-de-bord" class="masque">
+        <p class="synthese">
+          <select id="filtre-periode" class="choix-phrase" aria-label="Période">
+            <option value="7">Sur les 7 prochains jours</option>
+            <option value="30">Sur les 30 prochains jours</option>
+            <option value="">Sur toute la programmation</option>
+          </select>,
+          pour
+          <select id="filtre-film" class="choix-phrase" aria-label="Film">
+            <option value="">tous les films</option>
+          </select>
+          :
+          <span id="synthese" aria-live="polite"></span>
+        </p>
+
+        <section class="bloc-admin" aria-labelledby="titre-remplissage">
+          <h2 id="titre-remplissage">Séances à venir</h2>
+          <div id="liste-seances" class="carte liste-seances">
+            <div class="entete-seances" aria-hidden="true">
+              <span>Date et heure</span>
+              <span>Film</span>
+              <span>Places vendues</span>
+              <span>Remplissage</span>
+            </div>
+            <div id="corps-liste-seances"></div>
+          </div>
+          <p id="etat-vide-seances" class="carte etat-vide-admin masque">
+            Aucune séance à venir.
+          </p>
+          <p id="etat-vide-filtres" class="carte etat-vide-admin masque">
+            Aucune séance ne correspond à ces filtres.
+          </p>
+        </section>
+      </div>
+
+      <section id="zone-erreur" class="masque">
+        <h2>Un petit entracte</h2>
+        <div
+          id="message-erreur"
+          class="alerte alerte-erreur"
+          role="alert"
+        ></div>
+        <button type="button" id="bouton-recharger" class="btn">
+          Recharger la page
+        </button>
+      </section>
+
+      <template id="template-seance">
+        <details class="seance-depliable">
+          <summary class="resume-seance">
+            <span class="cellule-horaire"></span>
+            <span class="cellule-titre"></span>
+            <span class="cellule-places"></span>
+            <span class="remplissage">
+              <span class="jauge" aria-hidden="true">
+                <span class="jauge-niveau"></span>
+              </span>
+              <span class="pourcentage"></span>
+            </span>
+          </summary>
+          <div class="reservations-seance">
+            <table class="tableau-reservations">
+              <thead>
+                <tr>
+                  <th scope="col">Client</th>
+                  <th scope="col">Places</th>
+                  <th scope="col">Statut</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <p class="aucune-reservation masque">
+              Aucune réservation pour cette séance.
+            </p>
+            <a class="lien-places">Voir les places</a>
+          </div>
+        </details>
+      </template>
+
+      <template id="template-ligne-reservation">
+        <tr>
+          <td class="cellule-client"></td>
+          <td class="cellule-places"></td>
+          <td class="cellule-statut"></td>
+        </tr>
+      </template>
+    </main>
+    <footer id="footer-site"></footer>
+    <script type="module" src="/js/layout.js"></script>
+    <script type="module" src="/js/admin-dashboard.js"></script>
+  </body>
+</html>
