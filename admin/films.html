@@ -35,6 +35,7 @@
           <table>
             <thead>
               <tr>
+                <th scope="col">Affiche</th>
                 <th scope="col">Titre</th>
                 <th scope="col">Genre</th>
                 <th scope="col">Durée</th>
@@ -65,6 +66,9 @@
 
       <template id="template-ligne-film">
         <tr>
+          <td class="cellule-affiche">
+            <img class="miniature-affiche" alt="" width="40" height="60" loading="lazy" />
+          </td>
           <td class="cellule-titre"></td>
           <td class="cellule-genre"></td>
           <td class="cellule-duree"></td>
@@ -139,6 +143,10 @@
               aria-describedby="message-affiche"
             />
             <p id="message-affiche" class="message-champ"></p>
+            <img id="apercu-affiche" class="apercu-affiche masque" alt="Aperçu de l'affiche" />
+            <p id="erreur-apercu" class="aide-champ masque">
+              L'image ne s'affiche pas avec cette adresse.
+            </p>
           </div>
           <div class="champ">
             <label for="description">Description</label>

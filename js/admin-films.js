@@ -10,6 +10,7 @@ import {
 const TITRE_AJOUT = "Nouveau film";
 const TITRE_MODIFICATION = "Modifier le film";
 const TEXTE_ENREGISTREMENT = "Enregistrement…";
+const DELAI_APERCU = 400;
 
 const sectionFilms = document.getElementById("section-films");
 const boutonAjouter = document.getElementById("bouton-ajouter-film");
@@ -26,6 +27,8 @@ const champGenre = document.getElementById("genre");
 const champDuree = document.getElementById("duree");
 const champAffiche = document.getElementById("affiche");
 const champDescription = document.getElementById("description");
+const apercuAffiche = document.getElementById("apercu-affiche");
+const erreurApercu = document.getElementById("erreur-apercu");
 
 const fenetreSuppression = document.getElementById("fenetre-suppression");
 const titreFilmASupprimer = document.getElementById("titre-film-a-supprimer");
@@ -35,10 +38,17 @@ const boutonConfirmerSuppression = document.getElementById("bouton-confirmer-sup
 let films = [];
 let filmEnModification = null;
 let filmASupprimer = null;
+let minuteurApercu = null;
 
 function fabriquerLigne(film) {
     const copie = templateLigne.content.cloneNode(true);
     const ligne = copie.querySelector("tr");
+    const miniature = ligne.querySelector(".miniature-affiche");
+
+    miniature.addEventListener("error", function () {
+        miniature.classList.add("masque");
+    });
+    miniature.src = film.affiche;
 
     ligne.querySelector(".cellule-titre").textContent = film.titre;
     ligne.querySelector(".cellule-genre").textContent = film.genre;
@@ -72,6 +82,21 @@ async function rafraichirApresAction(message) {
     }
 }
 
+function cacherApercu() {
+    apercuAffiche.classList.add("masque");
+    apercuAffiche.removeAttribute("src");
+    erreurApercu.classList.add("masque");
+}
+
+function mettreAJourApercu() {
+    const adresse = champAffiche.value.trim();
+    if (adresse === "") {
+        cacherApercu();
+        return;
+    }
+    apercuAffiche.src = adresse;
+}
+
 function ouvrirAjout() {
     cacherSucces();
     filmEnModification = null;
@@ -88,6 +113,7 @@ function ouvrirModification(film) {
     champDuree.value = film.duree;
     champAffiche.value = film.affiche;
     champDescription.value = film.description;
+    mettreAJourApercu();
     fenetreFilm.showModal();
 }
 
@@ -139,7 +165,22 @@ formulaireFilm.addEventListener("submit", async function (evenement) {
 fenetreFilm.addEventListener("close", function () {
     formulaireFilm.reset();
     effacerErreurs();
+    clearTimeout(minuteurApercu);
+    cacherApercu();
     filmEnModification = null;
+});
+
+apercuAffiche.addEventListener("load", function () {
+    apercuAffiche.classList.remove("masque");
+    erreurApercu.classList.add("masque");
+});
+
+apercuAffiche.addEventListener("error", function () {
+    if (!apercuAffiche.hasAttribute("src")) {
+        return;
+    }
+    apercuAffiche.classList.add("masque");
+    erreurApercu.classList.remove("masque");
 });
 
 boutonConfirmerSuppression.addEventListener("click", async function () {
@@ -154,6 +195,10 @@ fenetreSuppression.addEventListener("close", function () {
     filmASupprimer = null;
 });
 
+champAffiche.addEventListener("input", function () {
+    clearTimeout(minuteurApercu);
+    minuteurApercu = setTimeout(mettreAJourApercu, DELAI_APERCU);
+});
 boutonAjouter.addEventListener("click", ouvrirAjout);
 brancherFermeture(fenetreFilm, document.getElementById("bouton-annuler-film"));
 brancherFermeture(fenetreSuppression, document.getElementById("bouton-annuler-suppression"));

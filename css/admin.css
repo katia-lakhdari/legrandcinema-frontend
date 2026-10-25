@@ -211,6 +211,20 @@
     margin: 0;
 }
 
+.miniature-affiche {
+    display: block;
+    width: 40px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.apercu-affiche {
+    width: 120px;
+    margin-top: var(--espace-xs);
+    border-radius: var(--bordure-arrondie);
+}
+
 .place-bloquee,
 button.place-bloquee:hover {
     background-color: rgba(240, 149, 149, 0.15);
