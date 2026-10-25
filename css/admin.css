@@ -15,6 +15,20 @@
     margin-left: auto;
 }
 
+.case-a-cocher {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espace-xs);
+    cursor: pointer;
+}
+
+.case-a-cocher input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--couleur-principale);
+    cursor: pointer;
+}
+
 .barre-admin .btn,
 .bloc-camera .btn,
 .barre-places .btn {
@@ -80,6 +94,10 @@
 
 .cellule-horaire {
     white-space: nowrap;
+}
+
+.ligne-passee td {
+    color: var(--couleur-texte-discret);
 }
 
 .tableau-admin .colonne-actions {
@@ -167,4 +185,28 @@
     justify-content: flex-end;
     gap: var(--espace-xs);
     margin-top: var(--espace-s);
+}
+
+.cellule-date {
+    white-space: nowrap;
+    color: var(--couleur-or);
+}
+
+.cellule-date::first-letter {
+    text-transform: uppercase;
+}
+
+.tableau-admin tbody tr.premiere-du-jour:not(:first-child) td {
+    border-top: 1px solid rgba(212, 175, 55, 0.45);
+}
+
+.champ select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.aide-champ {
+    color: var(--couleur-texte-doux);
+    font-size: 0.9rem;
+    margin: 0;
 }
