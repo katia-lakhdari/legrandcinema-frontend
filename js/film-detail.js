@@ -4,7 +4,7 @@ import { formaterDuree, formaterHoraire, formaterPrix } from "./format.js";
 const SEUIL_DERNIERES_PLACES = 10;
 const PAGE_SELECTION_PLACES = "/selection-places.html";
 const MESSAGE_FILM_INTROUVABLE = "Ce film n'existe pas ou n'est plus à l'affiche.";
-const MESSAGE_AUCUNE_SEANCE = "Aucune séance prévue pour le moment.";
+const MESSAGE_AUCUNE_SEANCE = "Ce film n'est pas encore réservable.";
 
 const alerteFilms = document.getElementById("alerte-films");
 const ficheFilm = document.getElementById("fiche-film");
