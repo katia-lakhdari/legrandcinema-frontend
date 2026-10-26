@@ -48,10 +48,6 @@ function accorder(nombre, singulier, pluriel) {
     return nombre <= 1 ? singulier : pluriel;
 }
 
-function cleSeance(titreFilm, dateHeure) {
-    return titreFilm + "|" + new Date(dateHeure).getTime();
-}
-
 function ajouterChiffre(valeur) {
     const chiffre = document.createElement("strong");
     chiffre.textContent = valeur;
@@ -85,7 +81,7 @@ function afficherSynthese(seances, reservations) {
 function regrouperParSeance(reservations) {
     const groupes = new Map();
     reservations.forEach(function (reservation) {
-        const cle = cleSeance(reservation.filmTitre, reservation.dateHeureSeance);
+        const cle = reservation.seanceId;
         if (!groupes.has(cle)) {
             groupes.set(cle, []);
         }
@@ -151,7 +147,7 @@ function afficherSeances(seances, reservations) {
     listeSeances.classList.remove("masque");
 
     seances.forEach(function (seance) {
-        const reservationsDeLaSeance = groupes.get(cleSeance(seance.filmTitre, seance.dateHeure)) ?? [];
+        const reservationsDeLaSeance = groupes.get(seance.seanceId) ?? [];
         corpsListeSeances.appendChild(fabriquerSeance(seance, reservationsDeLaSeance));
     });
 }
@@ -182,11 +178,11 @@ function appliquerFiltres() {
         return dansLaPeriode && bonFilm;
     });
 
-    const clesAffichees = new Set(seancesFiltrees.map(function (seance) {
-        return cleSeance(seance.filmTitre, seance.dateHeure);
+    const idsSeancesAffichees = new Set(seancesFiltrees.map(function (seance) {
+        return seance.seanceId;
     }));
     const reservationsFiltrees = reservationsEnCours.filter(function (reservation) {
-        return clesAffichees.has(cleSeance(reservation.filmTitre, reservation.dateHeureSeance));
+        return idsSeancesAffichees.has(reservation.seanceId);
     });
 
     afficherSynthese(seancesFiltrees, reservationsFiltrees);
