@@ -1,0 +1,37 @@
+main > .alerte {
+    margin-bottom: var(--espace-l);
+}
+
+main section {
+    padding: var(--espace-m) 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+main h2 {
+    font-size: 1.4rem;
+}
+
+main p {
+    color: var(--couleur-texte-doux);
+}
+
+main section p:last-child {
+    margin-bottom: 0;
+}
+
+@media (min-width: 900px) {
+    main section {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: var(--espace-xl);
+    }
+
+    main section h2 {
+        grid-row: 1 / span 4;
+        margin: 0;
+    }
+
+    main section p {
+        grid-column: 2;
+    }
+}
