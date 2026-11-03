@@ -149,7 +149,7 @@ main {
     text-align: center;
 }
 
-.rond-accessibilite i {
+.icone-accessibilite {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -158,7 +158,11 @@ main {
     border: 2px solid var(--couleur-principale);
     border-radius: 50%;
     color: var(--couleur-principale);
-    font-size: 30px;
+}
+
+.icone-accessibilite svg {
+    width: 32px;
+    height: 32px;
 }
 
 .texte-accessibilite {
@@ -208,4 +212,4 @@ main {
     .rond-accessibilite {
         width: 160px;
     }
-}
+}
