@@ -1,5 +1,5 @@
 import { appelerBackend } from "./api.js";
-import { formaterDuree } from "./format.js";
+import { formaterDuree, reduireAffiche } from "./format.js";
 
 const PAGE_DETAIL_FILM = "/film-detail.html";
 const MESSAGE_AUCUN_FILM = "On vous prépare une programmation en or. Revenez vite !";
@@ -24,7 +24,7 @@ function creerCarteFilm(film) {
     cadreAffiche.className = "affiche-film";
 
     const image = document.createElement("img");
-    image.src = film.affiche;
+    image.src = reduireAffiche(film.affiche);
     image.alt = "";
     image.loading = "lazy";
     cadreAffiche.appendChild(image);
@@ -105,4 +105,4 @@ async function chargerFilms() {
 }
 
 filtreGenre.addEventListener("change", filtrerParGenre);
-chargerFilms();
+chargerFilms();
