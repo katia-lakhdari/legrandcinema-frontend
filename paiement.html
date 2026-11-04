@@ -4,11 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paiement | Le Grand Cinéma</title>
+    <meta
+      name="description"
+      content="Paiement sécurisé de votre réservation au Grand Cinéma."
+    />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
     />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/films.css" />
@@ -42,18 +47,18 @@
         >
         <div id="formulaire-carte" class="formulaire">
           <div class="champ">
-            <label>Numéro de carte</label>
+            <label for="numero-carte">Numéro de carte</label>
             <div id="numero-carte"></div>
             <p id="message-numero-carte" class="message-champ"></p>
           </div>
           <div class="champs-carte">
             <div class="champ">
-              <label>Date d'expiration</label>
+              <label for="expiration-carte">Date d'expiration</label>
               <div id="expiration-carte"></div>
               <p id="message-expiration-carte" class="message-champ"></p>
             </div>
             <div class="champ">
-              <label>Code de sécurité (CVC)</label>
+              <label for="code-carte">Code de sécurité (CVC)</label>
               <div id="code-carte"></div>
               <p id="message-code-carte" class="message-champ"></p>
             </div>

@@ -1,6 +1,6 @@
 import { appelerBackend } from "./api.js";
 import { exigerAdmin } from "./auth.js";
-import { formaterDuree } from "./format.js";
+import { formaterDuree, reduireAffiche } from "./format.js";
 import { effacerErreurs, afficherErreurs, desactiverBouton, reactiverBouton } from "./formulaire.js";
 import {
     afficherContenu, afficherErreurChargement, afficherSucces, cacherSucces, afficherListe,
@@ -48,7 +48,7 @@ function fabriquerLigne(film) {
     miniature.addEventListener("error", function () {
         miniature.classList.add("masque");
     });
-    miniature.src = film.affiche;
+    miniature.src = reduireAffiche(film.affiche);
 
     ligne.querySelector(".cellule-titre").textContent = film.titre;
     ligne.querySelector(".cellule-genre").textContent = film.genre;

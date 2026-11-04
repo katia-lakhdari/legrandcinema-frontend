@@ -108,9 +108,11 @@ async function chargerPage() {
     }
 
     try {
-        const film = await appelerBackend("/api/films/" + encodeURIComponent(idFilm));
+        const [film, seances] = await Promise.all([
+            appelerBackend("/api/films/" + encodeURIComponent(idFilm)),
+            appelerBackend("/api/films/" + encodeURIComponent(idFilm) + "/seances")
+        ]);
         afficherFilm(film);
-        const seances = await appelerBackend("/api/films/" + encodeURIComponent(idFilm) + "/seances");
         afficherSeances(seances);
     } catch (erreur) {
         if (erreur.statut === 404 || erreur.statut === 400) {
@@ -121,4 +123,4 @@ async function chargerPage() {
     }
 }
 
-chargerPage();
+chargerPage();
