@@ -1,4 +1,6 @@
-export const URL_BACKEND = "http://localhost:8080";
+const EST_EN_LOCAL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+
+export const URL_BACKEND = EST_EN_LOCAL ? "http://localhost:8080" : "https://legrandcinema-backend.onrender.com";
 export const CLE_PUBLIQUE_STRIPE = "pk_test_51UCJe0BPS7qXX3GRJoxh66t9qSxHfMgh9MUdEOGg4fcZ9Nygbz72z8FFIUNUTGmXhaRTg2kbzaIqaBWwCQU025vb00jMLCszgJ";
 export const CLE_SESSION = "session";
 export const PAGE_CONNEXION = "/connexion.html";

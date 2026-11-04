@@ -932,6 +932,52 @@ img {
     }
 }
 
+.page-introuvable {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.bobine {
+    width: 140px;
+    height: 140px;
+    margin-bottom: var(--espace-m);
+    animation: rotation-bobine 2.5s ease-out;
+}
+
+.bord-bobine {
+    fill: var(--couleur-carte);
+    stroke: var(--couleur-or);
+    stroke-width: 4;
+}
+
+.trou-bobine {
+    fill: var(--couleur-fond);
+    stroke: var(--couleur-principale);
+    stroke-width: 3;
+}
+
+.axe-bobine {
+    fill: var(--couleur-or);
+}
+
+.texte-introuvable {
+    max-width: 40ch;
+    margin-bottom: var(--espace-m);
+    color: var(--couleur-texte-doux);
+}
+
+@keyframes rotation-bobine {
+    from {
+        transform: rotate(-720deg);
+    }
+    to {
+        transform: rotate(0);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -940,4 +986,4 @@ img {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-}
+}

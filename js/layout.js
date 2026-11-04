@@ -181,6 +181,7 @@ function afficherFooter() {
             ${presentation}
             <nav aria-label="Informations">
                 <a href="/contact.html">Contact</a>
+                <a href="/mentions-legales.html">Mentions légales</a>
             </nav>
             <p class="mention">© 2026 Le Grand Cinéma · projet de formation STUDI</p>
             <p class="mention-tmdb" lang="en">This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
@@ -246,4 +247,4 @@ const session = lireSession();
 afficherHeader(session);
 afficherFooter();
 appliquerPalette(localStorage.getItem(CLE_PALETTE));
-allumerArcs();
+allumerArcs();

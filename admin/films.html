@@ -4,11 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Films | Administration | Le Grand Cinéma</title>
+    <meta
+      name="description"
+      content="Espace admin du Grand Cinéma : gestion des films à l'affiche."
+    />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Limelight&family=Monoton&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Work+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;600&display=swap"
     />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/admin.css" />
@@ -35,6 +40,7 @@
           <table>
             <thead>
               <tr>
+                <th scope="col">Affiche</th>
                 <th scope="col">Titre</th>
                 <th scope="col">Genre</th>
                 <th scope="col">Durée</th>
@@ -65,6 +71,9 @@
 
       <template id="template-ligne-film">
         <tr>
+          <td class="cellule-affiche">
+            <img class="miniature-affiche" alt="" width="40" height="60" loading="lazy" />
+          </td>
           <td class="cellule-titre"></td>
           <td class="cellule-genre"></td>
           <td class="cellule-duree"></td>
@@ -139,6 +148,10 @@
               aria-describedby="message-affiche"
             />
             <p id="message-affiche" class="message-champ"></p>
+            <img id="apercu-affiche" class="apercu-affiche masque" alt="Aperçu de l'affiche" />
+            <p id="erreur-apercu" class="aide-champ masque">
+              L'image ne s'affiche pas avec cette adresse.
+            </p>
           </div>
           <div class="champ">
             <label for="description">Description</label>

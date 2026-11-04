@@ -1,3 +1,5 @@
+const TAILLE_AFFICHE_REDUITE = "w342";
+
 export function formaterDuree(minutes) {
     const heures = Math.floor(minutes / 60);
     const reste = minutes % 60;
@@ -30,4 +32,11 @@ export function formaterHoraire(dateHeure) {
 
 export function formaterPrix(prix) {
     return prix.toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
+}
+
+export function reduireAffiche(adresse) {
+    if (!adresse) {
+        return adresse;
+    }
+    return adresse.replace(/\/t\/p\/[^/]+\//, "/t/p/" + TAILLE_AFFICHE_REDUITE + "/");
 }
