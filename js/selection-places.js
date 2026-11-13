@@ -9,6 +9,7 @@ const TEXTE_RETOUR_FILM = "← Retour au film";
 const MESSAGE_SEANCE_INTROUVABLE = "Cette séance n'existe pas ou n'est plus disponible.";
 const MESSAGE_PLACE_PRISE = "Une des places choisies vient d'être prise par quelqu'un d'autre. Le plan a été mis à jour, choisissez à nouveau.";
 const MESSAGE_AUCUNE_PLACE = "Cliquez sur une place pour la choisir.";
+const POSITIONS_ALLEES = new Set([5, 15]);
 
 const choixPlaces = document.getElementById("choix-places");
 const lienRetourFilm = document.getElementById("lien-retour-film");
@@ -54,6 +55,20 @@ function creerPlace(place) {
     return bouton;
 }
 
+function creerLettreRangee(lettre) {
+    const lettreRangee = document.createElement("span");
+    lettreRangee.className = "lettre-rangee";
+    lettreRangee.textContent = lettre;
+    return lettreRangee;
+}
+
+function creerPassage() {
+    const passage = document.createElement("span");
+    passage.className = "passage";
+    passage.setAttribute("aria-hidden", "true");
+    return passage;
+}
+
 function afficherPlan(places) {
     planSalle.textContent = "";
     placesChoisies.clear();
@@ -67,18 +82,25 @@ function afficherPlan(places) {
     for (const place of places) {
         const lettre = place.numero.charAt(0);
         if (lettre !== lettreActuelle) {
+            if (rangee !== null) {
+                rangee.appendChild(creerLettreRangee(lettreActuelle));
+            }
             rangee = document.createElement("div");
             rangee.className = "rangee";
-
-            const lettreRangee = document.createElement("span");
-            lettreRangee.className = "lettre-rangee";
-            lettreRangee.textContent = lettre;
-
-            rangee.appendChild(lettreRangee);
+            rangee.appendChild(creerLettreRangee(lettre));
             planSalle.appendChild(rangee);
             lettreActuelle = lettre;
         }
+
+        const numeroSiege = Number(place.numero.slice(1));
+        if (POSITIONS_ALLEES.has(numeroSiege - 1)) {
+            rangee.appendChild(creerPassage());
+        }
         rangee.appendChild(creerPlace(place));
+    }
+
+    if (rangee !== null) {
+        rangee.appendChild(creerLettreRangee(lettreActuelle));
     }
 
     mettreAJourRecapitulatif();
