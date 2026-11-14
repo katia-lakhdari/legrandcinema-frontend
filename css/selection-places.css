@@ -20,7 +20,7 @@
 #legende li {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
 }
 
 #ecran {
@@ -39,6 +39,8 @@
 }
 
 #plan-salle {
+    display: grid;
+    justify-content: safe center;
     overflow-x: auto;
     padding: var(--espace-xs) 0 var(--espace-s);
 }
@@ -46,9 +48,20 @@
 .rangee {
     display: flex;
     align-items: center;
-    gap: 4px;
-    width: max-content;
-    margin: 0 auto 6px;
+    gap: 5px;
+    margin-bottom: 6px;
+}
+
+.rangee .lettre-rangee:last-child {
+    margin-left: auto;
+}
+
+.passage {
+    align-self: stretch;
+    width: 36px;
+    flex-shrink: 0;
+    margin-bottom: -6px;
+    background-color: var(--couleur-carte);
 }
 
 .lettre-rangee {
@@ -61,20 +74,42 @@
 }
 
 .place {
-    width: 28px;
-    height: 28px;
+    position: relative;
+    width: 24px;
+    height: 26px;
     flex-shrink: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0;
     border: 1px solid var(--couleur-secondaire);
-    border-radius: 8px 8px 3px 3px;
+    border-radius: 10px 10px 4px 4px;
+    box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.3);
     background-color: var(--couleur-champ);
     color: var(--couleur-texte);
     font-family: var(--police-texte);
     font-size: 0.65rem;
     transition: transform var(--duree-transition), background-color var(--duree-transition);
+}
+
+.place::before,
+.place::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    width: 5px;
+    height: 60%;
+    border: inherit;
+    border-radius: 3px 3px 1px 1px;
+    background-color: inherit;
+}
+
+.place::before {
+    left: -5px;
+}
+
+.place::after {
+    right: -5px;
 }
 
 button.place {
@@ -116,12 +151,12 @@ button.place-prise:hover {
 
 @media (min-width: 768px) {
     .place {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 30px;
         font-size: 0.75rem;
     }
 
-    .rangee {
-        gap: 6px;
+    .passage {
+        width: 56px;
     }
 }

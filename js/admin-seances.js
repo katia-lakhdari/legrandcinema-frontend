@@ -310,4 +310,4 @@ async function chargerPage() {
     }
 }
 
-chargerPage();
+await chargerPage();

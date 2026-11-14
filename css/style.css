@@ -302,6 +302,10 @@ img {
     color: var(--couleur-message-succes);
 }
 
+output {
+    display: block;
+}
+
 .masque {
     display: none !important;
 }

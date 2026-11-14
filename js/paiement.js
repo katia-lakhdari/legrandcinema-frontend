@@ -1,6 +1,6 @@
 import { appelerBackend, CLE_PUBLIQUE_STRIPE } from "./api.js";
 import { exigerConnexion } from "./auth.js";
-import { formaterHoraire, formaterPrix, reduireAffiche } from "./format.js";
+import { formaterHoraire, formaterPrix, reduireAffiche, verifierAdresseAffiche } from "./format.js";
 import { effacerErreurs, afficherAlerte, afficherErreurChamp, desactiverBouton, reactiverBouton } from "./formulaire.js";
 
 const PAGE_CONFIRMATION = "/confirmation.html";
@@ -70,7 +70,7 @@ function afficherRecapitulatif() {
 
     document.title = "Paiement · " + intentionPaiement.titreFilm + " | Le Grand Cinéma";
 
-    if (intentionPaiement.affiche) {
+    if (verifierAdresseAffiche(intentionPaiement.affiche)) {
         miniatureAffiche.src = reduireAffiche(intentionPaiement.affiche);
         miniatureAffiche.alt = "Affiche du film " + intentionPaiement.titreFilm;
     } else {
@@ -202,4 +202,4 @@ async function chargerPage() {
 }
 
 boutonPayer.addEventListener("click", payer);
-chargerPage();
+await chargerPage();

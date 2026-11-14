@@ -34,9 +34,13 @@ export function formaterPrix(prix) {
     return prix.toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
 }
 
-export function reduireAffiche(adresse) {
-    if (!adresse) {
+export function verifierAdresseAffiche(adresse) {
+    if (typeof adresse === "string" && adresse.startsWith("https://image.tmdb.org/")) {
         return adresse;
     }
-    return adresse.replace(/\/t\/p\/[^/]+\//, "/t/p/" + TAILLE_AFFICHE_REDUITE + "/");
+    return "";
+}
+
+export function reduireAffiche(adresse) {
+    return verifierAdresseAffiche(adresse).replace(/\/t\/p\/[^/]+\//, "/t/p/" + TAILLE_AFFICHE_REDUITE + "/");
 }

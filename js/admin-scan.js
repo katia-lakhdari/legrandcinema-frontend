@@ -115,8 +115,8 @@ async function quandCodeLu(qrCode) {
     }
     await arreterCamera();
     await verifierBillet(qrCode);
-    minuteurRedemarrage = setTimeout(function () {
-        demarrerCamera(true);
+    minuteurRedemarrage = setTimeout(async function () {
+        await demarrerCamera(true);
     }, DELAI_REDEMARRAGE);
 }
 
@@ -148,13 +148,13 @@ async function demarrerCamera(garderResultat) {
     }
 }
 
-boutonCamera.addEventListener("click", function () {
-    demarrerCamera(false);
+boutonCamera.addEventListener("click", async function () {
+    await demarrerCamera(false);
 });
 
-boutonArreterCamera.addEventListener("click", function () {
+boutonArreterCamera.addEventListener("click", async function () {
     annulerRedemarrage();
-    arreterCamera();
+    await arreterCamera();
 });
 
 formulaireScan.addEventListener("submit", async function (evenement) {
@@ -174,9 +174,9 @@ formulaireScan.addEventListener("submit", async function (evenement) {
     champQrCode.value = "";
 });
 
-window.addEventListener("pagehide", function () {
+window.addEventListener("pagehide", async function () {
     annulerRedemarrage();
-    arreterCamera();
+    await arreterCamera();
 });
 
 exigerAdmin();
