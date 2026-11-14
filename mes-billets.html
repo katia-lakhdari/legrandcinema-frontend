@@ -22,7 +22,7 @@
     <main>
       <h1 id="titre-mes-billets">Mes billets</h1>
 
-      <p id="chargement" role="status">Chargement de vos billets…</p>
+      <output id="chargement">Chargement de vos billets…</output>
 
       <section id="section-a-venir" class="masque" aria-label="Billets à venir">
         <div id="billets-a-venir"></div>
@@ -49,13 +49,13 @@
         <article class="carte billet">
           <div class="billet-qrcode">
             <img class="qrcode masque" alt="" width="160" height="160" />
-            <p class="erreur-qrcode masque" role="status">
+            <output class="erreur-qrcode masque">
               QR code indisponible pour le moment. Vous le retrouverez dans
               l'e-mail de confirmation.
-            </p>
+            </output>
           </div>
           <div class="billet-infos">
-            <h2 class="titre-film"></h2>
+            <h2 class="titre-film">Chargement…</h2>
             <dl class="infos-billet">
               <div>
                 <dt>Date</dt>
