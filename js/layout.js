@@ -192,10 +192,10 @@ function afficherFooter() {
 function appliquerPalette(palette) {
     const boutonPalette = document.getElementById("bouton-palette");
     if (palette === THEME_CANARD) {
-        document.documentElement.setAttribute("data-theme", THEME_CANARD);
+        document.documentElement.dataset.theme = THEME_CANARD;
         boutonPalette.textContent = "Canard";
     } else {
-        document.documentElement.removeAttribute("data-theme");
+        delete document.documentElement.dataset.theme;
         boutonPalette.textContent = "Soleil";
     }
     boutonPalette.setAttribute("aria-label", "Couleurs du site : " + boutonPalette.textContent);
