@@ -211,4 +211,4 @@ async function chargerPage() {
 }
 
 boutonValider.addEventListener("click", validerPlaces);
-chargerPage();
+await chargerPage();

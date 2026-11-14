@@ -20,17 +20,17 @@
   <body>
     <header id="header-site"></header>
     <main>
-      <p id="chargement" role="status">Chargement de votre billet…</p>
+      <output id="chargement">Chargement de votre billet…</output>
 
       <section id="zone-confirmation" class="masque">
         <h1>Félicitations, votre réservation est confirmée</h1>
         <p>Vous allez voir</p>
-        <h2 id="titre-film" class="titre-film"></h2>
+        <h2 id="titre-film" class="titre-film">Chargement…</h2>
 
         <article class="carte billet">
           <div class="billet-qrcode">
             <img id="qrcode" class="qrcode masque" alt="QR code de votre billet, à présenter à l'entrée de la salle" width="160" height="160" />
-            <p id="erreur-qrcode" class="masque" role="status">QR code indisponible pour le moment. Vous le retrouverez dans l'e-mail de confirmation.</p>
+            <output id="erreur-qrcode" class="masque">QR code indisponible pour le moment. Vous le retrouverez dans l'e-mail de confirmation.</output>
           </div>
           <div class="billet-infos">
             <dl class="infos-billet">

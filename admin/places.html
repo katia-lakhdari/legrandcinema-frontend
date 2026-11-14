@@ -25,13 +25,12 @@
     <main>
       <a href="/admin/seances.html" class="lien-retour">← Retour aux séances</a>
 
-      <p id="chargement" role="status">Chargement du plan…</p>
+      <output id="chargement">Chargement du plan…</output>
 
-      <div
+      <output
         id="message-succes"
         class="alerte alerte-succes masque"
-        role="status"
-      ></div>
+      ></output>
       <div
         id="alerte-page"
         class="alerte alerte-erreur masque"
@@ -40,7 +39,7 @@
 
       <section id="section-places" class="masque">
         <div id="infos-seance">
-          <h1 id="titre-seance" class="titre-film"></h1>
+          <h1 id="titre-seance" class="titre-film">Chargement…</h1>
           <p id="precisions-seance" class="precisions-film"></p>
         </div>
         <ul id="legende" aria-label="Légende du plan">
@@ -58,7 +57,7 @@
         </ul>
         <div id="ecran" aria-hidden="true">Écran</div>
         <div id="plan-salle" aria-label="Plan de la salle"></div>
-        <p id="recapitulatif" role="status"></p>
+        <output id="recapitulatif"></output>
         <div class="barre-places">
           <button type="button" id="bouton-bloquer" class="btn" disabled>
             Bloquer la sélection
@@ -84,7 +83,7 @@
         aria-labelledby="titre-fenetre-blocage"
       >
         <form id="formulaire-blocage" class="formulaire" novalidate>
-          <h2 id="titre-fenetre-blocage"></h2>
+          <h2 id="titre-fenetre-blocage">Bloquer des places</h2>
           <div
             id="alerte-formulaire"
             class="alerte alerte-erreur masque"

@@ -1,5 +1,5 @@
 import { appelerBackend } from "./api.js";
-import { formaterDuree, formaterHoraire, formaterPrix } from "./format.js";
+import { formaterDuree, formaterHoraire, formaterPrix, verifierAdresseAffiche } from "./format.js";
 
 const SEUIL_DERNIERES_PLACES = 10;
 const PAGE_SELECTION_PLACES = "/selection-places.html";
@@ -16,7 +16,7 @@ const seancesFilm = document.getElementById("seances-film");
 const listeSeances = document.getElementById("liste-seances");
 const etatVide = document.getElementById("etat-vide");
 
-const idFilm = new URLSearchParams(window.location.search).get("id");
+const idFilm = Number.parseInt(new URLSearchParams(window.location.search).get("id"), 10);
 
 function afficherErreur(message) {
     alerteFilms.textContent = message;
@@ -25,7 +25,7 @@ function afficherErreur(message) {
 
 function afficherFilm(film) {
     document.title = film.titre + " | Le Grand Cinéma";
-    imageDetail.src = film.affiche;
+    imageDetail.src = verifierAdresseAffiche(film.affiche);
     titreDetail.textContent = film.titre;
     precisionsDetail.textContent = film.genre + " · " + formaterDuree(film.duree);
     descriptionDetail.textContent = film.description;
@@ -102,15 +102,15 @@ function afficherSeances(seances) {
 }
 
 async function chargerPage() {
-    if (idFilm === null) {
+    if (Number.isNaN(idFilm)) {
         afficherErreur(MESSAGE_FILM_INTROUVABLE);
         return;
     }
 
     try {
         const [film, seances] = await Promise.all([
-            appelerBackend("/api/films/" + encodeURIComponent(idFilm)),
-            appelerBackend("/api/films/" + encodeURIComponent(idFilm) + "/seances")
+            appelerBackend("/api/films/" + idFilm),
+            appelerBackend("/api/films/" + idFilm + "/seances")
         ]);
         afficherFilm(film);
         afficherSeances(seances);
@@ -123,4 +123,4 @@ async function chargerPage() {
     }
 }
 
-chargerPage();
+await chargerPage();

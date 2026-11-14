@@ -51,7 +51,7 @@ function fabriquerCarteBillet(billet) {
         qrcode.alt = "QR code de votre billet, à présenter à l'entrée de la salle";
     }
 
-    afficherQrCode(billet, carte);
+    void afficherQrCode(billet, carte);
     return carte;
 }
 
@@ -92,4 +92,4 @@ boutonRecharger.addEventListener("click", function () {
     window.location.reload();
 });
 
-chargerPage();
+await chargerPage();
