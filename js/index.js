@@ -105,4 +105,4 @@ async function chargerFilms() {
 }
 
 filtreGenre.addEventListener("change", filtrerParGenre);
-chargerFilms();
+await chargerFilms();

@@ -68,7 +68,7 @@ async function chargerPage() {
             return;
         }
         afficherBillet(billetTrouve);
-        afficherQrCode(billetTrouve);
+        await afficherQrCode(billetTrouve);
     } catch (erreur) {
         afficherErreur(erreur.message);
     }
@@ -78,4 +78,4 @@ boutonRecharger.addEventListener("click", function () {
     window.location.reload();
 });
 
-chargerPage();
+await chargerPage();
